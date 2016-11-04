@@ -1,1 +1,4 @@
 # project
+
+Authors:
+Aaron Lajom
