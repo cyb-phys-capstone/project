@@ -1,4 +1,4 @@
 # project
 
 Authors:
-Aaron Lajom, Sean Scott
+Aaron Lajom, Sean Scott, Carlos Davila
