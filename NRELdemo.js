@@ -7,9 +7,7 @@ function getSolarData(){
     request.onreadystatechange = function(){
         if((request.readyState == 4) && (request.status ==200)){
            var jsonOBJ = JSON.parse(request.responseText);
-            
-            console.log(jsonOBJ.outputs.avg_dni.monthly);
-            
+                        
             displaySolarData(jsonOBJ.outputs.avg_dni, jsonOBJ.outputs.avg_ghi, jsonOBJ.outputs.avg_lat_tilt);
         }
     }
