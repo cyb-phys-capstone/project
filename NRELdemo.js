@@ -11,7 +11,7 @@ function getSolarData(){
             displaySolarData(jsonOBJ.outputs.avg_dni, jsonOBJ.outputs.avg_ghi, jsonOBJ.outputs.avg_lat_tilt);
         }
     }
-    request.open('GET','http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=9J3HbPxHzYdMgvgk1NxLnrAoNSsPvvoDtYMHr4s5&lat=33&lon=-111' ,true);
+    request.open('GET','http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=DEMO_KEY&lat=33&lon=-111' ,true);
     //request.setRequestHeader()
     request.send(null);        
 }
