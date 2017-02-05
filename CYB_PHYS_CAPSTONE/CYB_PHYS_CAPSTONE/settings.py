@@ -76,7 +76,6 @@ WSGI_APPLICATION = 'CYB_PHYS_CAPSTONE.wsgi.application'
 
 DATABASES = {
     'default': {
-
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'CYB_PHYS_CAPSTONE_DB',
         'USER': 'admin',

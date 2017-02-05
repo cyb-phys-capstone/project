@@ -7,8 +7,10 @@ from django.db import models
 
 # Create your models here.
 
+
 class CollectsFrom(models.Model):
     date = models.DateField(primary_key=True,default=datetime.date.today)
+
 
 class NodeControllers(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -17,6 +19,7 @@ class NodeControllers(models.Model):
     a_id = GenericForeignKey('content_type','object_id')
     model = models.CharField(max_length=15, default="")
     manufacturer = models.CharField(max_length=20, default="")
+
 
 class Batteries(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -29,7 +32,20 @@ class Batteries(models.Model):
     model = models.CharField(max_length=15,default="")
     manufacturer = models.CharField(max_length=20, default="")
 
-#class Generators(models.Model):
+
+class Generators(models.Model):
+    id = models.IntegerField(primary_key=True)
+    nc_id = models.ForeignKey('NodeControllers', on_delete=models.CASCADE)
+    frequency = models.FloatField(default=0.0)
+    voltage = models.FloatField(default=0.0)
+    temperature = models.FloatField(default=0.0)
+    dc_power_rate = models.FloatField(default=0.0)
+    ampHours = models.FloatField(default=0.0)
+    kWProduction = models.FloatField(default=0.0)
+    model = models.CharField(max_length=15, default="")
+    manufacturer = models.CharField(max_length=20, default="")
+    fuel_type = models.CharField(max_length=15, default="")
+
 
 class Inverters(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -39,13 +55,19 @@ class Inverters(models.Model):
     model = models.CharField(max_length=15, default="")
     manufacturer = models.CharField(max_length=20, default="")
 
+
 class BData(models.Model):
     id = models.IntegerField(primary_key=True)
     b_id = models.ForeignKey('Batteries',on_delete=models.CASCADE)
     collected = models.ForeignKey('CollectsFrom',models.CASCADE)
     amps = models.FloatField(default=0.0)
 
-    # class GData(models.Model):
+
+class GData(models.Model):
+    id = models.IntegerField(primary_key=True)
+    g_id = models.ForeignKey('Generators', on_delete=models.CASCADE)
+    collected = models.ForeignKey('CollectsFrom', models.CASCADE)
+    amps = models.FloatField(default=0.0)
 
 
 class IData(models.Model):
