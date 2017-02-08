@@ -10,7 +10,7 @@ Run the following commands in your terminal:
 `pip install djangorestframework`
 `conda install psycopg2`
 
-Use the fields in the `DATABASE` block of [settings.py](CYB_PHYS_CAPSTONE/CYB_PHYS_CAPSTONE/settings.py) to fill in the following placeholders:
+Use the fields in the `DATABASES` block of [settings.py](CYB_PHYS_CAPSTONE/CYB_PHYS_CAPSTONE/settings.py) to fill in the following placeholders:
 - In pgAdmin, create a PostgreSQL server (if none exist) on $PORT. The default username and password will be fine. Host = localhost.
 - Create a new login role for the $USER, with $PASSWORD
 - Create a new database, where Name = $NAME, Owner = $USER
@@ -27,4 +27,5 @@ You can now view the database on [localhost:8000](http://localhost:8000)!
 When models are updated, refresh the database by running:
 
 `python manage.py makemigrations`
+
 `python manage.py migrate`
