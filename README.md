@@ -3,12 +3,16 @@ Authors:
 Mohit Mehrotra, Aaron Lajom, Sean Scott, Carlos Davila, Eric Reeves
 
 # Database Setup
-Requires [PostgreSQL](https://www.postgresql.org/download/), [pgAdmin](https://www.pgadmin.org/download/), and [Anaconda for Python 3](https://www.continuum.io/downloads)
+**Requires [PostgreSQL](https://www.postgresql.org/download/), [pgAdmin](https://www.pgadmin.org/download/), and [Anaconda for Python 3](https://www.continuum.io/downloads)**
 
 Run the following commands in your terminal:
+
 `pip install django`
+
 `pip install djangorestframework`
+
 `conda install psycopg2`
+
 
 Use the fields in the `DATABASES` block of [settings.py](CYB_PHYS_CAPSTONE/CYB_PHYS_CAPSTONE/settings.py) to fill in the following placeholders:
 - In pgAdmin, create a PostgreSQL server (if none exist) on $PORT. The default username and password will be fine. Host = localhost.
