@@ -25,7 +25,7 @@ SECRET_KEY = 'e05xn+frpz1xa2*eozv1(1@*y&s+z+&4g5^!1awptv=2qej-y_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -81,7 +81,7 @@ DATABASES = {
         'USER': 'admin',
         'PASSWORD': 'abc123',
         'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'PORT': '3306',
     }
 }
 

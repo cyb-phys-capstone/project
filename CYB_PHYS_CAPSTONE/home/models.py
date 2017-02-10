@@ -12,7 +12,7 @@ class CollectsFrom(models.Model):
     date = models.DateField(primary_key=True,default=datetime.date.today)
 
 
-class NodeControllers(models.Model):
+class NodeController(models.Model):
     id = models.IntegerField(primary_key=True)
     content_type= models.ForeignKey(ContentType,on_delete=models.CASCADE)
     object_id=models.PositiveIntegerField()
@@ -21,9 +21,9 @@ class NodeControllers(models.Model):
     manufacturer = models.CharField(max_length=20, default="")
 
 
-class Batteries(models.Model):
+class Battery(models.Model):
     id = models.IntegerField(primary_key=True)
-    nc_id = models.ForeignKey('NodeControllers',on_delete=models.CASCADE)
+    nc_id = models.ForeignKey('NodeController',on_delete=models.CASCADE)
     max_battery_voltage = models.FloatField(default=0.0)
     time_in_float = models.FloatField(default=0.0)
     max_current = models.FloatField(default=0.0)
@@ -33,9 +33,9 @@ class Batteries(models.Model):
     manufacturer = models.CharField(max_length=20, default="")
 
 
-class Generators(models.Model):
+class Generator(models.Model):
     id = models.IntegerField(primary_key=True)
-    nc_id = models.ForeignKey('NodeControllers', on_delete=models.CASCADE)
+    nc_id = models.ForeignKey('NodeController', on_delete=models.CASCADE)
     frequency = models.FloatField(default=0.0)
     voltage = models.FloatField(default=0.0)
     temperature = models.FloatField(default=0.0)
@@ -47,9 +47,9 @@ class Generators(models.Model):
     fuel_type = models.CharField(max_length=15, default="")
 
 
-class Inverters(models.Model):
+class Inverter(models.Model):
     id = models.IntegerField(primary_key=True)
-    nc_id = models.ForeignKey('NodeControllers',on_delete=models.CASCADE)
+    nc_id = models.ForeignKey('NodeController',on_delete=models.CASCADE)
     dc_input = models.FloatField(default=0.0)
     ac_output = models.FloatField(default=0.0)
     model = models.CharField(max_length=15, default="")
@@ -58,21 +58,21 @@ class Inverters(models.Model):
 
 class BData(models.Model):
     id = models.IntegerField(primary_key=True)
-    b_id = models.ForeignKey('Batteries',on_delete=models.CASCADE)
+    b_id = models.ForeignKey('Battery',on_delete=models.CASCADE)
     collected = models.ForeignKey('CollectsFrom',models.CASCADE)
     amps = models.FloatField(default=0.0)
 
 
 class GData(models.Model):
     id = models.IntegerField(primary_key=True)
-    g_id = models.ForeignKey('Generators', on_delete=models.CASCADE)
+    g_id = models.ForeignKey('Generator', on_delete=models.CASCADE)
     collected = models.ForeignKey('CollectsFrom', models.CASCADE)
     amps = models.FloatField(default=0.0)
 
 
 class IData(models.Model):
     id = models.IntegerField(primary_key=True)
-    i_id = models.ForeignKey('Inverters',on_delete=models.CASCADE)
+    i_id = models.ForeignKey('Inverter',on_delete=models.CASCADE)
     collected = models.ForeignKey('CollectsFrom', models.CASCADE)
     amps = models.FloatField(default=0.0)
     amp_hours = models.FloatField(default=0.0)
