@@ -39,3 +39,5 @@ function displaySolarData(dni, ghi, lat){
     }
 
 }
+
+console.log("Hello World");
