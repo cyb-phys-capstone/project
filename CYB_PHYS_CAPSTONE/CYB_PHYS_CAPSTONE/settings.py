@@ -78,8 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'CYB_PHYS_CAPSTONE_DB',
-        'USER': 'admin',
-        'PASSWORD': 'abc123',
+        'USER': 'rise',
+        'PASSWORD': 'energy',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
