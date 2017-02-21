@@ -126,3 +126,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = ''
 
 STATIC_URL = '/static/'
+
+# Celery Stuff
+BROKER_URL = 'redis://localhost'

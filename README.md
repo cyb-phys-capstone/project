@@ -7,11 +7,16 @@ Mohit Mehrotra, Aaron Lajom, Sean Scott, Carlos Davila, Eric Reeves
 
 Run the following commands in your terminal:
 
-`pip install django`
-
-`pip install djangorestframework`
+`pip install -r requirements.txt`
 
 `conda install psycopg2`
+
+Install [Redis].
+Make sure it's running with:
+```sh
+\>redis-cli ping
+PONG <----what you should see
+```
 
 
 Use the fields in the `DATABASES` block of [settings.py](CYB_PHYS_CAPSTONE/CYB_PHYS_CAPSTONE/settings.py) to fill in the following placeholders:
@@ -22,7 +27,15 @@ Use the fields in the `DATABASES` block of [settings.py](CYB_PHYS_CAPSTONE/CYB_P
 `cd` into the project directory, where `manage.py` is located. Set up the database by running:
 `python manage.py migrate`
 
-And then run the server via:
+Start the celery worker service via:
+
+`celery -A CYB_PHYS_CAPSTONE worker -l info`
+
+Start the celery beat service for periodic background tasks with:
+
+`celery -A CYB_PHYS_CAPSTONE beat -l info -S django`
+
+And then run the server (separate terminal) via:
 
 `python manage.py runserver`
 
