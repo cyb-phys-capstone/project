@@ -2,8 +2,19 @@
 Authors:
 Mohit Mehrotra, Aaron Lajom, Sean Scott, Carlos Davila, Eric Reeves
 
-# Database Setup
+# Database Dependencies (Raspberry Pi)
+**Requires [PostgreSQL](https://www.postgresql.org/download/), [pgAdmin](https://www.pgadmin.org/download/), and [Minconda](http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-armv7l.sh)**
+
+Install the libpq package with;
+
+`sudo apt-get install libpq-dev`
+
+Install Psycopg2 from source via https://pypi.python.org/pypi/psycopg2#downloads
+
+# Database Dependencies (Windows/Linux)
 **Requires [PostgreSQL](https://www.postgresql.org/download/), [pgAdmin](https://www.pgadmin.org/download/), and [Anaconda for Python 3](https://www.continuum.io/downloads)**
+
+# Setup
 
 Run the following commands in your terminal:
 
@@ -17,6 +28,7 @@ Use the fields in the `DATABASES` block of [settings.py](CYB_PHYS_CAPSTONE/CYB_P
 - Create a new database, where Name = $NAME, Owner = $USER
 
 `cd` into the project directory, where `manage.py` is located. Set up the database by running:
+
 `python manage.py migrate`
 
 And then run the server via:
