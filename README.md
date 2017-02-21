@@ -14,13 +14,15 @@ Install Psycopg2 from source via https://pypi.python.org/pypi/psycopg2#downloads
 # Database Dependencies (Windows/Linux)
 **Requires [PostgreSQL](https://www.postgresql.org/download/), [pgAdmin](https://www.pgadmin.org/download/), and [Anaconda for Python 3](https://www.continuum.io/downloads)**
 
+Install Psycopg2 via command line:
+
+`conda install psycopg2`
+
 # Setup
 
 Run the following commands in your terminal:
 
 `pip install -r requirements.txt`
-
-`conda install psycopg2`
 
 Use the fields in the `DATABASES` block of [settings.py](CYB_PHYS_CAPSTONE/CYB_PHYS_CAPSTONE/settings.py) to fill in the following placeholders:
 - In pgAdmin, create a PostgreSQL server (if none exist) on $PORT. The default username and password will be fine. Host = localhost.
