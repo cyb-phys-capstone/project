@@ -3,3 +3,5 @@ djangorestframework
 celery==3.1.25
 lxml
 requests
+django-celery
+redis
