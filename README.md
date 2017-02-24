@@ -3,13 +3,18 @@ Authors:
 Mohit Mehrotra, Aaron Lajom, Sean Scott, Carlos Davila, Eric Reeves
 
 # Database Dependencies (Raspberry Pi)
-**Requires [PostgreSQL](https://www.postgresql.org/download/), [pgAdmin](https://www.pgadmin.org/download/), and [Minconda](http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-armv7l.sh)**
+**Requires [PostgreSQL](https://www.postgresql.org/download/), [pgAdmin](https://www.pgadmin.org/download/), and [Miniconda](http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-armv7l.sh)**
 
 Install the libpq package with;
 
 `sudo apt-get install libpq-dev`
 
-Install Psycopg2 from source via https://pypi.python.org/pypi/psycopg2#downloads
+*Tip: Ensure you have the right pip, do: `conda install pip`, otherwise it may use a preinstalled version of pip that will point to a different python directory*
+
+`pip install psycopg2`
+`pip install redis`
+
+*Tip: Ensure the pip installations are being sent to the Miniconda directory. This can be forced by doing `~/dir/to/miniconda3/bin/pip install ...`*
 
 # Database Dependencies (Windows/Linux)
 **Requires [PostgreSQL](https://www.postgresql.org/download/), [pgAdmin](https://www.pgadmin.org/download/), and [Anaconda for Python 3](https://www.continuum.io/downloads)**
