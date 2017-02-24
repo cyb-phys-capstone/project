@@ -44,16 +44,20 @@ def get_nrel_timestamp():
 
 # Gets the NREL data for a requested item
 def get_nrel_value(data_point):
-    # Make the HTTP request
-    page = requests.get('http://www.nrel.gov/midc/apps/plot.pl?site=UAT;start=20101103;live=1;time=0;inst=' + data_point + ';type=data;first=3;math=0;second=-1;value=0.0;user=0;axis=1;endyear=' + year + ';endmonth=' + month + ';endday=' + day)
-    # Parse the HTML
-    tree = html.fromstring(page.content)
-    # Get the raw text content
-    content = tree.text_content()
-    # Find the last occurence of comma
-    # This gives us the most up to date value
-    k = content.rfind(',')
-    value_str = content[k+1:]
+    try:
+        # Make the HTTP request
+        page = requests.get('http://www.nrel.gov/midc/apps/plot.pl?site=UAT;start=20101103;live=1;time=0;inst=' + data_point + ';type=data;first=3;math=0;second=-1;value=0.0;user=0;axis=1;endyear=' + year + ';endmonth=' + month + ';endday=' + day)
+        # Parse the HTML
+        tree = html.fromstring(page.content)
+        # Get the raw text content
+        content = tree.text_content()
+        # Find the last occurence of comma
+        # This gives us the most up to date value
+        k = content.rfind(',')
+        value_str = content[k+1:]
+    except requests.exceptions.RequestException as e:
+        print(e)
+        value_str = '0'
     return float(value_str)
 
 @shared_task
