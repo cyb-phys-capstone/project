@@ -12,6 +12,7 @@ Install the libpq package with;
 *Tip: Ensure you have the right pip, do: `conda install pip`, otherwise it may use a preinstalled version of pip that will point to a different python directory*
 
 `pip install psycopg2`
+
 `pip install redis`
 
 *Tip: Ensure the pip installations are being sent to the Miniconda directory. This can be forced by doing `~/dir/to/miniconda3/bin/pip install ...`*
