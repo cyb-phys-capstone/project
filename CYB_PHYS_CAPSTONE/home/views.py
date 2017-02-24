@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from home.forms import *
 
 # Create your views here.
 def index(request):
-    return render(request, 'client/index.html')
+    form = NREL_Form();
+    return render(request, 'client/NREL.html', {'form':form})
