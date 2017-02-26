@@ -5,7 +5,12 @@ from django.contrib.auth.models import User
 from home.models import NREL
 
 
-class NREL_Form (forms.Form) :
+class NREL_Times(forms.Form):
+    timeStamps = forms.ModelChoiceField(queryset=NREL.objects.datetimes('timestamp', 'second'), widget=forms.Select, empty_label=None)
+
+
+
+class NREL_Form(forms.Form):
 
     class Meta:
         model = NREL
