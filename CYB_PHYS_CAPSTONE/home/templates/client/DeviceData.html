@@ -1,9 +1,11 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Cyber-Physical ASU</title>
     <meta charset="UTF-8">
-    
+
     <!-- Bootstrap Import -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> <!-- Latest compiled and minified CSS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> <!-- jQuery library -->
@@ -65,7 +67,7 @@
         <div class="container">
             <h2><b>Real Time Data</b></h2>
             <div class="col-md-6">
-                <img src="/CYB_PHYS_CAPSTONE/home/assets/stand_in_graph.png" class="img-responsive" width="835" height="475">
+                <img src="{% static "assets/stand_in_graph.png" %}" class="img-responsive" width="835" height="475">
             </div>
             <div class="col-md-6">
                 <div class="row" >
