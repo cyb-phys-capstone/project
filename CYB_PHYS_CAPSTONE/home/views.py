@@ -10,3 +10,6 @@ def nrel (request):
     comp = NREL.objects.filter(wind_dir=171.0).values()[0]
     form = NREL_Form(initial=comp)
     return render(request, 'client/NRELview.html', {'form': form})
+
+def DeviceData (request):
+    return render(request, 'client/DeviceData.html')
