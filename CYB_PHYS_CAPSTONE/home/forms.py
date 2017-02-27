@@ -12,11 +12,11 @@ class NREL_Times(forms.Form):
     # Attributes
     timestamp = forms.CharField(label='Timestamp', max_length=50,
                           widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_timestamp'}))
-    ghi = forms.CharField(label='Ghi', max_length=30,
+    ghi = forms.CharField(label='GHI', max_length=30,
                           widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_ghi'}))
-    dni = forms.CharField(label='Dni', max_length=30,
+    dni = forms.CharField(label='DNI', max_length=30,
                           widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_dni'}))
-    dhi = forms.CharField(label='Dhi', max_length=30,
+    dhi = forms.CharField(label='DHI', max_length=30,
                           widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_dhi'}))
     air_temp = forms.CharField(label='Air Temp', max_length=30,
                           widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_air_temp'}))
