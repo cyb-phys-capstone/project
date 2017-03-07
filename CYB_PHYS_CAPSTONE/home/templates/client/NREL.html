@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script defer type='text/javascript' src='/static/NREL_viewer.js'></script>
+</head>
+<body>
+    <div onchange="selectTime()">
+        Date, Time Select:
+        {{form.timeStamps}}
+    </div>
+
+    <div>
+        <div>
+            {{form.timestamp.label_tag}}
+            {{form.timestamp}}
+        </div>
+
+        <div>
+            {{form.ghi.label_tag}}
+            {{form.ghi}}
+            W/m^2
+        </div>
+
+        <div>
+            {{form.dni.label_tag}}
+            {{form.dni}}
+            W/m^2
+        </div>
+
+        <div>
+            {{form.dhi.label_tag}}
+            {{form.dhi}}
+            W/m^2
+        </div>
+
+        <div>
+            {{form.air_temp.label_tag}}
+            {{form.air_temp}}
+            degrees Celsius
+        </div>
+
+        <div>
+            {{form.rel_humid.label_tag}}
+            {{form.rel_humid}}
+            %
+        </div>
+
+        <div>
+            {{form.wind_speed.label_tag}}
+            {{form.wind_speed}}
+            m/s
+        </div>
+
+        <div>
+            {{form.wind_dir.label_tag}}
+            {{form.wind_dir}}
+            degrees from N
+        </div>
+
+        <div>
+            {{form.station_pressure.label_tag}}
+            {{form.station_pressure}}
+            mBar
+        </div>
+    </div>
+
+    <div id="printerInfo">
+
+    </div>
+</body>
+</html>
