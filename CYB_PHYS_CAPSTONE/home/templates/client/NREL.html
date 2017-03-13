@@ -13,28 +13,25 @@
     <link rel="stylesheet" href="/static/css/nrel.css">
 </head>
 
-<body>
-    <div class="container">
-        <div id="calendar_ham" class="col-sm-2">
-            <h2>Calendar</h2>
+<body class="container">
+
+    <div id="calendar_ham" class="col-lg-2">
+        <h2>Calendar</h2>
+    </div>
+
+    <div id="NREL_master_viewer" class="col-lg-10">
+        <div id="time_select" onchange="selectTime()">
+            Date, Time Select:
+            {{form.timeStamps}}
         </div>
-
-        <div id="NREL_master_viewer" class="col-sm-10">
-            <div id="time_select" onchange="selectTime()">
-                Date, Time Select:
-                {{form.timeStamps}}
-            </div>
-            <br/>
-            <div id="NREL_data_viewer">
-                Nothing Selected
-            </div>
-
-            <div id="NREL_Graph">
-                <!-- Insert google graph here -->
-            </div>
+        <br/>
+        <div id="NREL_data_viewer">
 
         </div>
 
+        <div id="NREL_Graph">
+            <!-- Insert google graph here -->
+        </div>
 
     </div>
 
