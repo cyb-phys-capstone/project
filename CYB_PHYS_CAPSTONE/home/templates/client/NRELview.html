@@ -1,54 +1,71 @@
 <div id="NREL_data_viewer">
-        <div>
-            {{form.timestamp.label_tag}}
-            {{form.timestamp}}
+
+        <div class="container">
+            <div class="nrel-container">
+                {{form.ghi.label_tag}}
+                <br/>
+                {{form.ghi}}
+                <br/>
+                W/m^2
+            </div>
+
+            <div class="nrel-container">
+                {{form.dni.label_tag}}
+                <br/>
+                {{form.dni}}
+                <br/>
+                W/m^2
+            </div>
+
+            <div class="nrel-container">
+                {{form.dhi.label_tag}}
+                <br/>
+                {{form.dhi}}
+                <br/>
+                W/m^2
+            </div>
+
+            <div class="nrel-container">
+                {{form.air_temp.label_tag}}
+                <br/>
+                {{form.air_temp}}
+                <br/>
+                degrees Celsius
+            </div>
         </div>
 
-        <div>
-            {{form.ghi.label_tag}}
-            {{form.ghi}}
-            W/m^2
+        <div class="container nrel-container">
+            <div class="nrel-container">
+                {{form.rel_humid.label_tag}}
+                <br/>
+                {{form.rel_humid}}
+                <br/>
+                %
+            </div>
+
+            <div class="nrel-container">
+                {{form.wind_speed.label_tag}}
+                <br/>
+                {{form.wind_speed}}
+                <br/>
+                m/s
+            </div>
+
+            <div class="nrel-container">
+                {{form.wind_dir.label_tag}}
+                <br/>
+                {{form.wind_dir}}
+                <br/>
+                degrees from N
+            </div>
+
+            <div class="nrel-container">
+                {{form.station_pressure.label_tag}}
+                <br/>
+                {{form.station_pressure}}
+                <br/>
+                mBar
+            </div>
         </div>
 
-        <div>
-            {{form.dni.label_tag}}
-            {{form.dni}}
-            W/m^2
-        </div>
-
-        <div>
-            {{form.dhi.label_tag}}
-            {{form.dhi}}
-            W/m^2
-        </div>
-
-        <div>
-            {{form.air_temp.label_tag}}
-            {{form.air_temp}}
-            degrees Celsius
-        </div>
-
-        <div>
-            {{form.rel_humid.label_tag}}
-            {{form.rel_humid}}
-            %
-        </div>
-
-        <div>
-            {{form.wind_speed.label_tag}}
-            {{form.wind_speed}}
-            m/s
-        </div>
-
-        <div>
-            {{form.wind_dir.label_tag}}
-            {{form.wind_dir}}
-            degrees from N
-        </div>
-
-        <div>
-            {{form.station_pressure.label_tag}}
-            {{form.station_pressure}}
-            mBar
-        </div>
 </div>
