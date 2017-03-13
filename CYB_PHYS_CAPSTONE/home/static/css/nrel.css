@@ -1,0 +1,32 @@
+body {
+    background-color: #5C59CF
+}
+
+select, input {
+    color: black;
+}
+
+div, label {
+    color: white;
+}
+
+#NREL_master_viewer {
+    margin-top: 10%;
+}
+
+#time_select {
+    position: absolute;
+    right: 10%;
+    font-size: 200%;
+}
+
+#NREL_data_viewer {
+    margin-top: 20%;
+    font-size: 150%;
+}
+
+.nrel-container {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 5%;
+}
