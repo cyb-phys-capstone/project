@@ -17,5 +17,21 @@ def nrel(request):
     return render(request, 'client/NRELview.html', {'form': form})
 
 
-def DeviceData (request):
-    return render(request, 'client/DeviceData.html')
+def battery_data(request):
+    return render(request, 'client/DeviceInfo/BatteryTemplate.html')
+
+
+def generator_template(request):
+    return render(request, 'client/DeviceInfo/GeneratorTemplate.html')
+
+
+def inverter_template(request):
+    return render(request, 'client/DeviceInfo/InverterTemplate.html')
+
+
+def node_template(request):
+    return render(request, 'client/DeviceInfo/NodeTemplate.html')
+
+
+def device_selector(request):
+    return render(request, 'client/DeviceSelector.html')
