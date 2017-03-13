@@ -1,11 +1,13 @@
 
 function selectTime () {
-    console.log($('#id_timeStamps').val());
-    console.log('something');
 
-    var reqObject = {timestamp : $('#id_timeStamps').val()};
+    var timeChosen = {timestamp : $('#id_timeStamps').val()};
 
-    $.get('/NREL_view', reqObject, function(response){
+    loadFormNREL (timeChosen);
+}
+
+function loadFormNREL (timestamp) {
+    $.get('/NREL_view', timestamp, function(response){
         $("#NREL_data_viewer").replaceWith(response);
 
         var list = document.getElementsByClassName("nrel-attr");
@@ -15,3 +17,4 @@ function selectTime () {
     });
 }
 
+window.onload = loadFormNREL({timestamp: 0});
