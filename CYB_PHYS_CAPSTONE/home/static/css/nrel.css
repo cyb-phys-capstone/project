@@ -16,8 +16,17 @@ div, label {
 
 #time_select {
     position: absolute;
-    right: 10%;
+    right: 0%;
     font-size: 200%;
+}
+
+#data_select {
+    margin-bottom: 5px;
+    font-size: 200%;
+}
+
+#google_graph {
+    position: relative;
 }
 
 #NREL_data_viewer {
@@ -29,4 +38,8 @@ div, label {
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 5%;
+}
+
+#hiddenData {
+    display: none;
 }

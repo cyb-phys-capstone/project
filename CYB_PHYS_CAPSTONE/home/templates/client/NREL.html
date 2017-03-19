@@ -4,8 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>NREL</title>
-    <!-- Libraries -->
+    <script type="text/javascript">
+        var data_NREL = {{form.queryset2|safe}};
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <script src="/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <!-- Other Stuff -->
@@ -24,13 +27,25 @@
             Date, Time Select:
             {{form.timeStamps}}
         </div>
+
         <br/>
         <div id="NREL_data_viewer">
 
         </div>
 
-        <div id="NREL_Graph">
+        <div id="NREL_Graph" onchange="getGraphData()">
+            <select id="data_select">
+                <option>Ghi</option>
+                <option>Dni</option>
+                <option>Dhi</option>
+                <option>Air Temp</option>
+                <option>Rel humid</option>
+                <option>Wind speed</option>
+                <option>Wind dir</option>
+                <option>Station Pressure</option>
+            </select>
             <!-- Insert google graph here -->
+            <div id="google_graph"></div>
         </div>
 
     </div>
