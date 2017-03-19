@@ -25,8 +25,8 @@ class Battery(models.Model):
     #id = models.IntegerField(primary_key=True)
     nc_id = models.ForeignKey('NodeController',on_delete=models.CASCADE)
     manufacturer = models.CharField(max_length=20, default="")
-    dimension = ArrayField(ArrayField(ArrayField(models.FloatField()))) #unit: meter
-    weight = models.FloatField(models.FloatField(default=0.0)) #unit: kg
+    dimension = ArrayField(ArrayField(ArrayField(models.FloatField(default=0.0)))) #unit: meter
+    weight = models.FloatField(default=0.0) #unit: kg
     R = models.FloatField(default=0.0) #unit: %
     capacity = models.FloatField(default=24.0) #unit: kWh
     rountrip_efficiency = models.FloatField(default=90.0) #unit: %
@@ -44,8 +44,8 @@ class Generator(models.Model):
     #id = models.IntegerField(primary_key=True)
     nc_id = models.ForeignKey('NodeController', on_delete=models.CASCADE)
     manufacturer = models.CharField(max_length=20, default="")
-    dimension = ArrayField(ArrayField(ArrayField(models.FloatField()))) #unit: meter
-    weight = models.FloatField(models.FloatField(default=0.0)) #unit: kg
+    dimension = ArrayField(ArrayField(ArrayField(models.FloatField(default=0.0)))) #unit: meter
+    weight = models.FloatField(default=0.0) #unit: kg
     fuel_type = models.CharField(max_length=15, default="")
     smart_control = models.BooleanField(default=False)
     frequency = models.FloatField(default=60.0) #unit: Hz
@@ -86,8 +86,8 @@ class Inverter(models.Model):
 class Solar(models.Model):
     nc_id = models.ForeignKey('NodeController',on_delete=models.CASCADE)
     manufacturer = models.CharField(max_length=20, default="")
-    dimension = ArrayField(ArrayField(ArrayField(models.FloatField()))) # unit: meter
-    weight = models.FloatField(models.FloatField(default=0.0)) #unit:kg
+    dimension = ArrayField(ArrayField(ArrayField(models.FloatField(default=0.0)))) # unit: meter
+    weight = models.FloatField(default=0.0) #unit:kg
     short_circuit_current = models.FloatField(default=5.0) #unit: A
     open_circuit_voltage = models.FloatField(21.0) #unit:V
     capacity = models.FloatField(1.0) #unit: kW
