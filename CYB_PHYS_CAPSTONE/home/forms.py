@@ -1,9 +1,12 @@
 from django import forms
 from home.models import NREL
+from django.core import serializers
 
 
 class NREL_Times(forms.Form):
     timeStamps = forms.ModelChoiceField(queryset=NREL.objects.datetimes('timestamp', 'second'), widget=forms.Select, empty_label=None)
+    queryset = NREL.objects.all()
+    queryset2 = serializers.serialize('json', queryset)
 
 
 class NREL_Form(forms.ModelForm):
