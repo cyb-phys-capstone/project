@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response, get_object_or_404
 from home.forms import *
-
+from home.models import NREL, NodeController, Battery, Generator, Inverter
 
 # Create your views here.
 def index(request):
@@ -34,4 +34,17 @@ def node_template(request):
 
 
 def device_selector(request):
-    return render(request, 'client/DeviceSelector.html')
+    nodes = NodeController.objects.all()
+    generators = Generator.objects.all()
+    inverters = Inverter.objects.all()
+    batteries = Battery.objects.all()
+    return render(request, 'client/DeviceSelector.html',
+                  {
+                    'nodesHTML': nodes,
+                    'generatorHTML': generators,
+                    'invertersHTML': inverters,
+                    'batteriesHTML': batteries,
+                    'button': ' <button type="button">Click Me!</button> '
+                   }
+                  )
+

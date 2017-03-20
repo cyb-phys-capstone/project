@@ -13,23 +13,12 @@ function getDeviceData() {
         }
     }
     request.open('GET', 'http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=DEMO_KEY&lat=33&lon=-111', true);
-    //request.setRequestHeader()
     request.send(null);
 }
 
 //Populates
-function populateDeviceField(asset, nodeName, manufacturer, model, weight, dimension, resistance, voltageMax, currentMax) {
-
-    document.getElementById('assetNum').innerHTML = asset;
-    document.getElementById('nodeName').innerHTML = nodeName;
-    document.getElementById('manufacturer').innerHTML = manufacturer;
-    document.getElementById('model').innerHTML = model;
-    document.getElementById('weight').innerHTML = weight;
-    document.getElementById('dimension').innerHTML = dimension;
-    document.getElementById('resistance').innerHTML = resistance;
-    document.getElementById('voltageMax').innerHTML = voltageMax;
-    document.getElementById('currentMax').innerHTML = currentMax;
-
+function populateDeviceField(click) {
+    console.log(click)
 }
 
 function populateNodeSelcector() {
