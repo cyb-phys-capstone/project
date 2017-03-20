@@ -19,19 +19,19 @@ class NREL_Form(forms.ModelForm):
     # Attributes
     timestamp = forms.CharField(label='Timestamp', max_length=50,
                           widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_timestamp'}))
-    ghi = forms.CharField(label='Ghi', max_length=30,
+    ghi = forms.CharField(label='GHI', max_length=30,
                           widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_ghi'}))
-    dni = forms.CharField(label='Dni', max_length=30,
+    dni = forms.CharField(label='DNI', max_length=30,
                           widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_dni'}))
-    dhi = forms.CharField(label='Dhi', max_length=30,
+    dhi = forms.CharField(label='DHI', max_length=30,
                           widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_dhi'}))
     air_temp = forms.CharField(label='Air Temp', max_length=30,
                           widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_air_temp'}))
-    rel_humid = forms.CharField(label='Rel humid', max_length=30,
+    rel_humid = forms.CharField(label='Rel. Humid', max_length=30,
                           widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_rel_humid'}))
-    wind_speed = forms.CharField(label='Wind speed', max_length=30,
+    wind_speed = forms.CharField(label='Wind Speed', max_length=30,
                           widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_wind_speed'}))
-    wind_dir = forms.CharField(label='Wind dir', max_length=30,
+    wind_dir = forms.CharField(label='Wind Dir', max_length=30,
                           widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_wind_dir'}))
-    station_pressure = forms.CharField(label='Station pressure', max_length=30,
+    station_pressure = forms.CharField(label='Station Pressure', max_length=30,
                           widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_station_pressure'}))
