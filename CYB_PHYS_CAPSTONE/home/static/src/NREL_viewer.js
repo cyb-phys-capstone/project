@@ -20,21 +20,23 @@ function loadFormNREL (timestamp) {
 }
 
 function getDataId (name) {
+    console.log("getting: " + name);
+
     var dataId = "";
 
-    if(name === "Ghi"){
+    if(name === "GHI"){
         dataId = "ghi";
-    }else if(name === "Dni") {
+    }else if(name === "DNI") {
         dataId = "dni";
-    }else if(name === "Dhi") {
+    }else if(name === "DHI") {
         dataId =  "dhi";
-    }else if(name === "Air Temp") {
+    }else if(name === "Air Temp.") {
         dataId = "air_temp";
-    }else if(name === "Rel humid") {
+    }else if(name === "Rel. Humid") {
         dataId = "rel_humid";
-    }else if(name === "Wind speed") {
+    }else if(name === "Wind Speed") {
         dataId = "wind_speed";
-    }else if(name === "Wind dir") {
+    }else if(name === "Wind Dir.") {
         dataId = "wind_dir";
     }else if(name === "Station Pressure") {
         dataId = "station_pressure";
