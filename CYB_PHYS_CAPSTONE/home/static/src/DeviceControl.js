@@ -7,10 +7,14 @@ function InveterControl() {
 
 }
 
+
 function BatteryControl() {
 
 }
 
+
 function GeneratorControl() {
 
 }
+
+
