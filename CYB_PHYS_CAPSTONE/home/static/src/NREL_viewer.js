@@ -19,6 +19,10 @@ function loadFormNREL (timestamp) {
     });
 }
 
+function getTimeStamp () {
+    return $('#id_timeStamps').val();
+}
+
 function getDataId (name) {
     console.log("getting: " + name);
 
@@ -46,11 +50,8 @@ function getDataId (name) {
 }
 
 function getGraphData () {
-    console.log(data_NREL);
-    console.log(data_NREL.length);
 
     var selection = document.getElementById("data_select").children;
-    console.log(selection);
     var attribute;
 
     for(i = 0; i < selection.length; i++) {
@@ -59,27 +60,45 @@ function getGraphData () {
         }
     }
 
-    var graphData = []
+    var graphData = [];
+    var currentTime = new Date(getTimeStamp());
+
     for (i = 0; i < data_NREL.length; i++) {
-        var dataSet = [];
-        dataSet.push( new Date(data_NREL[i].fields["timestamp"]));
-        dataSet.push(data_NREL[i].fields[attribute]);
-        graphData.push(dataSet);
+        var tempTime = new Date(data_NREL[i].fields["timestamp"]);
+        if( currentTime.getDate() === tempTime.getDate() &&
+            currentTime.getMonth() === tempTime.getMonth() &&
+            currentTime.getFullYear() === tempTime.getFullYear()
+        ){
+
+            var dataSet = [];
+            dataSet.push(tempTime);
+            dataSet.push(data_NREL[i].fields[attribute]);
+            graphData.push(dataSet);
+        }
+
     }
-    console.log(graphData);
 
     drawGraph(attribute, graphData);
 }
 
 function drawGraphDefault () {
-    var graphData = []
-    for (i = 0; i < data_NREL.length; i++) {
-        var dataSet = [];
-        dataSet.push( new Date(data_NREL[i].fields["timestamp"]));
-        dataSet.push(data_NREL[i].fields['ghi']);
-        graphData.push(dataSet);
-    }
+    var graphData = [];
     var attribute = "ghi";
+    var currentTime = new Date(data_NREL[0].fields["timestamp"]);
+    for (i = 0; i < data_NREL.length; i++) {
+        var tempTime = new Date(data_NREL[i].fields["timestamp"]);
+        if( currentTime.getDate() === tempTime.getDate() &&
+            currentTime.getMonth() === tempTime.getMonth() &&
+            currentTime.getFullYear() === tempTime.getFullYear()
+        ){
+
+            var dataSet = [];
+            dataSet.push(tempTime);
+            dataSet.push(data_NREL[i].fields[attribute]);
+            graphData.push(dataSet);
+        }
+    }
+    console.log(graphData);
 
     drawGraph(attribute, graphData);
 }
