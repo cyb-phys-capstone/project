@@ -23,7 +23,7 @@
     </div>
 
     <div id="NREL_master_viewer" class="col-lg-10">
-        <div id="time_select" onchange="selectTime()">
+        <div id="time_select" onchange="selectTime(); getGraphData ();">
             Date, Time Select:
             {{form.timeStamps}}
         </div>
