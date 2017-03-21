@@ -4,7 +4,7 @@ google.charts.setOnLoadCallback(function(){drawGraphDefault()});
 function selectTime () {
 
     var timeChosen = {timestamp : $('#id_timeStamps').val()};
-
+    
     loadFormNREL (timeChosen);
 }
 
@@ -124,11 +124,17 @@ function drawGraph(attribute, graphData, row) {
 
     var chart = new google.visualization.LineChart(document.getElementById("google_graph"));
     google.visualization.events.addListener(chart, 'ready', function(e) {
-    chart.setSelection([{row:row,column:null}]);
+        chart.setSelection([{row:row,column:null}]);
     });
-    //google.visualization.events.addListener(chart, 'select', );
+    google.visualization.events.addListener(chart, 'select', function(){
+        var selection = chart.getSelection()[0];
+        if(chart.getSelection().length > 0) {
+            var time =  data.getValue(selection.row, 0);
+            loadFormNREL({timestamp: time.toJSON()});
+        }
+
+    });
     chart.draw(data, options);
 }
-
 
 window.onload = loadFormNREL({timestamp: 0});
