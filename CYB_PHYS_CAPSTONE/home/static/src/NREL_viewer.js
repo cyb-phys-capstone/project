@@ -53,7 +53,7 @@ function getGraphData () {
 
     var selection = document.getElementById("data_select").children;
     var attribute;
-
+    var row;
     for(i = 0; i < selection.length; i++) {
         if(selection[i].selected === true ) {
             attribute = getDataId(selection[i].innerHTML);
@@ -73,17 +73,21 @@ function getGraphData () {
             var dataSet = [];
             dataSet.push(tempTime);
             dataSet.push(data_NREL[i].fields[attribute]);
+            if(currentTime.getTime() === tempTime.getTime()){
+                row = i;
+            }
             graphData.push(dataSet);
         }
 
     }
 
-    drawGraph(attribute, graphData);
+    drawGraph(attribute, graphData, row);
 }
 
 function drawGraphDefault () {
     var graphData = [];
     var attribute = "ghi";
+    var row = 0;
     var currentTime = new Date(data_NREL[0].fields["timestamp"]);
     for (i = 0; i < data_NREL.length; i++) {
         var tempTime = new Date(data_NREL[i].fields["timestamp"]);
@@ -95,15 +99,20 @@ function drawGraphDefault () {
             var dataSet = [];
             dataSet.push(tempTime);
             dataSet.push(data_NREL[i].fields[attribute]);
+            /*
+            if(currentTime.getTime() === tempTime.getTime()){
+                row = i;
+            }
+            */
             graphData.push(dataSet);
         }
     }
     console.log(graphData);
 
-    drawGraph(attribute, graphData);
+    drawGraph(attribute, graphData, row);
 }
 
-function drawGraph(attribute, graphData) {
+function drawGraph(attribute, graphData, row) {
     var data = new google.visualization.DataTable();
     data.addColumn('datetime', 'X');
     data.addColumn('number', attribute);
@@ -114,6 +123,10 @@ function drawGraph(attribute, graphData) {
     }
 
     var chart = new google.visualization.LineChart(document.getElementById("google_graph"));
+    google.visualization.events.addListener(chart, 'ready', function(e) {
+    chart.setSelection([{row:row,column:null}]);
+    });
+    //google.visualization.events.addListener(chart, 'select', );
     chart.draw(data, options);
 }
 
