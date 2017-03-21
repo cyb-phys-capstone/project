@@ -43,3 +43,7 @@ div, label {
 #hiddenData {
     display: none;
 }
+
+div.timepicker {
+    display: none;
+}
