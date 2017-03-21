@@ -21,6 +21,7 @@ class NodeController(models.Model):
     model = models.CharField(max_length=15, default="")
     manufacturer = models.CharField(max_length=20, default="")
 
+
 class Battery(models.Model):
     #id = models.IntegerField(primary_key=True)
     nc_id = models.ForeignKey('NodeController',on_delete=models.CASCADE)
@@ -39,6 +40,7 @@ class Battery(models.Model):
     rated_voltage = models.FloatField(default=20.0) #unit: V
     phase = models.IntegerField(default=1)
     current_voltage = models.FloatField(default=12.0) #unit: V
+
 
 class Generator(models.Model):
     #id = models.IntegerField(primary_key=True)
@@ -60,6 +62,7 @@ class Generator(models.Model):
     max_reactive_power = models.FloatField() #unit: kVAR
     min_reactive_power = models.FloatField() #unit: kVAR
     max_voltage = models.FloatField() #unit: V
+
 
 class Inverter(models.Model):
     #id = models.IntegerField(primary_key=True)
@@ -94,6 +97,7 @@ class Solar(models.Model):
     azimuth = models.FloatField(default=0.0) #unit: degrees
     slope = models.FloatField(default=33.45) #unit: degrees
 
+
 class BData(models.Model):
     #id = models.IntegerField(primary_key=True)
     b_id = models.ForeignKey('Battery',on_delete=models.CASCADE)
@@ -115,6 +119,7 @@ class BData(models.Model):
     phase = models.IntegerField(default=1)
     current_voltage = models.FloatField(default=12.0) #unit: V
 
+
 class GData(models.Model):
     #id = models.IntegerField(primary_key=True)
     g_id = models.ForeignKey('Generator', on_delete=models.CASCADE)
@@ -125,12 +130,14 @@ class GData(models.Model):
     output_real_power2 = models.FloatField() #unit: kVAR
     frequency = models.FloatField() #unit: Hz
 
+
 class SData(models.Model):
     s_id = models.ForeignKey('Solar',on_delete=models.CASCADE)
     collected = models.ForeignKey('CollectsFrom', models.CASCADE)
     output_voltage = models.FloatField() #unit: V
     current = models.FloatField() #unit: A
     real_power = models.FloatField() #unit: KW
+
 
 class IData(models.Model):
     #id = models.IntegerField(primary_key=True)

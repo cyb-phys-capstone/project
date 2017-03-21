@@ -13,7 +13,7 @@ function loadFormNREL (timestamp) {
         $("#NREL_data_viewer").replaceWith(response);
 
         var list = document.getElementsByClassName("nrel-attr");
-        for(i=0; i < list.length; i++) {
+        for(i = 0; i < list.length; i++) {
             list[i].setAttribute("disabled", "true");
         }
     });
