@@ -161,7 +161,7 @@ function drawGraph(attribute, graphData, dot) {
     /*google.visualization.events.addListener(chart, 'ready', function(e) {
         chart.setSelection([{row:dot,column:null}]);
     });*/
-    
+
     google.visualization.events.addListener(chart, 'select', function(){
         var selection = chart.getSelection()[0];
         if(chart.getSelection().length > 0) {
