@@ -32,6 +32,9 @@ def inverter_template(request):
 def node_template(request):
     return render(request, 'client/DeviceInfo/NodeTemplate.html')
 
+def asset_template(request):
+    return render(request, 'client/asset_template.html')
+
 
 def device_selector(request):
     nodes = NodeController.objects.all()
@@ -47,4 +50,3 @@ def device_selector(request):
                     'button': ' <button type="button">Click Me!</button> '
                    }
                   )
-
