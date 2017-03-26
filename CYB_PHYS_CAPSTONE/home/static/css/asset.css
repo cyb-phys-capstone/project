@@ -53,3 +53,7 @@ p {
   height:43%;
   position: relative;
 }
+
+div.timepicker {
+    display: none;
+}
