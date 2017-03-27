@@ -244,7 +244,7 @@
 	};
 
 	/**
-	 * ImageLoader is used for determining if all the images from the Tree are loaded.
+     * ImageLoader is used for determining if all the images from the Tree.js are loaded.
 	 * Node size (width, height) can be correctly determined only when all inner images are loaded
 	 */
 	var ImageLoader = function() {
@@ -330,7 +330,7 @@
 
 	/**
 	 * Class: TreeStore
-	 * TreeStore is used for holding initialized Tree objects
+     * TreeStore is used for holding initialized Tree.js objects
 	 * 	Its purpose is to avoid global variables and enable multiple Trees on the page.
 	 */
 	var TreeStore = {
@@ -389,7 +389,7 @@
 	};
 
 	/**
-	 * Tree constructor.
+     * Tree.js constructor.
 	 * @param {object} jsonConfig
 	 * @param {number} treeId
 	 * @constructor
@@ -2000,16 +2000,24 @@
 		},
 
 		callback: {
-			onCreateNode: function( treeNode, treeNodeDom ) {}, // this = Tree
-			onCreateNodeCollapseSwitch: function( treeNode, treeNodeDom, switchDom ) {}, // this = Tree
-			onAfterAddNode: function( newTreeNode, parentTreeNode, nodeStructure ) {}, // this = Tree
-			onBeforeAddNode: function( parentTreeNode, nodeStructure ) {}, // this = Tree
-			onAfterPositionNode: function( treeNode, nodeDbIndex, containerCenter, treeCenter) {}, // this = Tree
-			onBeforePositionNode: function( treeNode, nodeDbIndex, containerCenter, treeCenter) {}, // this = Tree
-			onToggleCollapseFinished: function ( treeNode, bIsCollapsed ) {}, // this = Tree
+            onCreateNode: function (treeNode, treeNodeDom) {
+            }, // this = Tree.js
+            onCreateNodeCollapseSwitch: function (treeNode, treeNodeDom, switchDom) {
+            }, // this = Tree.js
+            onAfterAddNode: function (newTreeNode, parentTreeNode, nodeStructure) {
+            }, // this = Tree.js
+            onBeforeAddNode: function (parentTreeNode, nodeStructure) {
+            }, // this = Tree.js
+            onAfterPositionNode: function (treeNode, nodeDbIndex, containerCenter, treeCenter) {
+            }, // this = Tree.js
+            onBeforePositionNode: function (treeNode, nodeDbIndex, containerCenter, treeCenter) {
+            }, // this = Tree.js
+            onToggleCollapseFinished: function (treeNode, bIsCollapsed) {
+            }, // this = Tree.js
 			onAfterClickCollapseSwitch: function( nodeSwitch, event ) {}, // this = TreeNode
 			onBeforeClickCollapseSwitch: function( nodeSwitch, event ) {}, // this = TreeNode
-			onTreeLoaded: function( rootTreeNode ) {} // this = Tree
+            onTreeLoaded: function (rootTreeNode) {
+            } // this = Tree.js
 		}
 	};
 

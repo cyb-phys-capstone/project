@@ -26,5 +26,7 @@ urlpatterns = [
     url(r'^GeneratorTemplate/', views.generator_template),
     url(r'^InverterTemplate/', views.inverter_template),
     url(r'^NodeTemplate/', views.node_template),
-    url(r'^DeviceSelector/', views.device_selector)
+    url(r'^DeviceSelector/', views.device_selector),
+    url(r'^tree/', views.treeDoodle)
+
 ]

@@ -36,6 +36,10 @@ def asset_template(request):
     return render(request, 'client/asset_template.html')
 
 
+def treeDoodle(request):
+    return render(request, 'client/Tree/tree.html')
+
+
 def device_selector(request):
     nodes = NodeController.objects.all()
     generators = Generator.objects.all()
