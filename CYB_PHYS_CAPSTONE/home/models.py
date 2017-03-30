@@ -9,8 +9,8 @@ from django.db import models
 # Create your models here.
 
 
-class CollectsFrom(models.Model):
-    date = models.DateField(primary_key=True,default=datetime.date.today)
+#class CollectsFrom(models.Model):
+#    date = models.DateField(primary_key=True,default=datetime.date.today)
 
 
 class NodeController(models.Model):
@@ -101,7 +101,8 @@ class Solar(models.Model):
 class BData(models.Model):
     #id = models.IntegerField(primary_key=True)
     b_id = models.ForeignKey('Battery',on_delete=models.CASCADE)
-    collected = models.ForeignKey('CollectsFrom',models.CASCADE)
+    timestamp = models.DateTimeField(default=datetime.datetime.now)
+#    collected = models.ForeignKey('CollectsFrom',models.CASCADE)
     current_soc = models.FloatField() #unit: %
     current_voltage = models.FloatField() #unit: V
     current_kw = models.FloatField() #unit: kW
@@ -123,7 +124,8 @@ class BData(models.Model):
 class GData(models.Model):
     #id = models.IntegerField(primary_key=True)
     g_id = models.ForeignKey('Generator', on_delete=models.CASCADE)
-    collected = models.ForeignKey('CollectsFrom', models.CASCADE)
+    timestamp = models.DateTimeField(default=datetime.datetime.now)
+#    collected = models.ForeignKey('CollectsFrom', models.CASCADE)
     output_voltage = models.FloatField() #unit: V
     output_current = models.FloatField() #unit: A
     output_real_power1 = models.FloatField() #unit: kW
@@ -133,7 +135,8 @@ class GData(models.Model):
 
 class SData(models.Model):
     s_id = models.ForeignKey('Solar',on_delete=models.CASCADE)
-    collected = models.ForeignKey('CollectsFrom', models.CASCADE)
+    timestamp = models.DateTimeField(default=datetime.datetime.now)
+#    collected = models.ForeignKey('CollectsFrom', models.CASCADE)
     output_voltage = models.FloatField() #unit: V
     current = models.FloatField() #unit: A
     real_power = models.FloatField() #unit: KW
@@ -142,7 +145,8 @@ class SData(models.Model):
 class IData(models.Model):
     #id = models.IntegerField(primary_key=True)
     i_id = models.ForeignKey('Inverter',on_delete=models.CASCADE)
-    collected = models.ForeignKey('CollectsFrom', models.CASCADE)
+    timestamp = models.DateTimeField(default=datetime.datetime.now)
+#    collected = models.ForeignKey('CollectsFrom', models.CASCADE)
     output_voltage = models.FloatField() #unit: kV
     real_power = models.FloatField() #unit: kW
     reactive_power = models.FloatField() #unit: kVAR
