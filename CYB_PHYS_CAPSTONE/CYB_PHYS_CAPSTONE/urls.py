@@ -19,11 +19,14 @@ from home import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^asset_template/', views.asset_template),
     url(r'^NREL/', views.index),
     url(r'^NREL_view/', views.nrel),
     url(r'^BatteryTemplate/', views.battery_data),
     url(r'^GeneratorTemplate/', views.generator_template),
     url(r'^InverterTemplate/', views.inverter_template),
     url(r'^NodeTemplate/', views.node_template),
-    url(r'^DeviceSelector/', views.device_selector)
+    url(r'^DeviceSelector/', views.device_selector),
+    url(r'^tree/', views.treeDoodle)
+
 ]

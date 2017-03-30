@@ -2,4 +2,3 @@
 __pycache__/
 *.pyc
 celerybeat.pid
-home/migrations/*
