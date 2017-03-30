@@ -2,10 +2,8 @@ google.charts.load('current', {'packages':['corechart', 'line']});
 google.charts.setOnLoadCallback(function(){drawGraphDefault()});
 
 function selectTime () {
-
     var timeChosen = {timestamp : $('#id_timeStamps').val()};
-
-    loadFormNREL (timeChosen);
+    loadForm (timeChosen);
 }
 
 function filterTime (dateObj) {
@@ -30,19 +28,16 @@ function filterTime (dateObj) {
     }
 }
 
-$('#datetimepicker12').datetimepicker({
-    inline: true,
-    sideBySide: true
-}).on('dp.change', function(e) {
+$('#datetimepicker12').datetimepicker().on('dp.change', function(e) {
     var date = new Date($('#datetimepicker12').datetimepicker("date")._d);
     filterTime(date);
     selectTime();
     getGraphData();
 });
 
-
-function loadFormNREL (timestamp) {
-    $.get('/nrel_view', timestamp, function(response){
+function loadForm (timestamp) {
+  /* TODO
+    $.get('/NREL_view', timestamp, function(response){
         $("#NREL_data_viewer").replaceWith(response);
 
         var list = document.getElementsByClassName("nrel-attr");
@@ -50,6 +45,7 @@ function loadFormNREL (timestamp) {
             list[i].setAttribute("disabled", "true");
         }
     });
+    */
 }
 
 function getTimeStamp () {
@@ -60,7 +56,7 @@ function getDataId (name) {
     console.log("getting: " + name);
 
     var dataId = "";
-
+/* TODO
     if(name === "GHI"){
         dataId = "ghi";
     }else if(name === "DNI") {
@@ -78,7 +74,7 @@ function getDataId (name) {
     }else if(name === "Station Pressure") {
         dataId = "station_pressure";
     }
-
+*/
     return dataId;
 }
 
@@ -96,8 +92,8 @@ function getGraphData () {
     var graphData = [];
     var currentTime = new Date(getTimeStamp());
 
-    for (i = 0; i < data_NREL.length; i++) {
-        var tempTime = new Date(data_NREL[i].fields["timestamp"]);
+    for (i = 0; i < data_BData.length; i++) {
+        var tempTime = new Date(data_BData[i].fields["timestamp"]);
         if( currentTime.getDate() === tempTime.getDate() &&
             currentTime.getMonth() === tempTime.getMonth() &&
             currentTime.getFullYear() === tempTime.getFullYear()
@@ -105,7 +101,7 @@ function getGraphData () {
 
             var dataSet = [];
             dataSet.push(tempTime);
-            dataSet.push(data_NREL[i].fields[attribute]);
+            dataSet.push(data_BData[i].fields[attribute]);
             if(currentTime.getTime() === tempTime.getTime()){
                 row = i;
                 console.log(row);
@@ -120,11 +116,11 @@ function getGraphData () {
 
 function drawGraphDefault () {
     var graphData = [];
-    var attribute = "ghi";
+    var attribute = "current_soc";
     var row = 0;
-    var currentTime = new Date(data_NREL[0].fields["timestamp"]);
-    for (i = 0; i < data_NREL.length; i++) {
-        var tempTime = new Date(data_NREL[i].fields["timestamp"]);
+    var currentTime = new Date(data_BData[0].fields["timestamp"]);
+    for (i = 0; i < data_BData.length; i++) {
+        var tempTime = new Date(data_BData[i].fields["timestamp"]);
         if( currentTime.getDate() === tempTime.getDate() &&
             currentTime.getMonth() === tempTime.getMonth() &&
             currentTime.getFullYear() === tempTime.getFullYear()
@@ -132,7 +128,7 @@ function drawGraphDefault () {
 
             var dataSet = [];
             dataSet.push(tempTime);
-            dataSet.push(data_NREL[i].fields[attribute]);
+            dataSet.push(data_BData[i].fields[attribute]);
             /*
             if(currentTime.getTime() === tempTime.getTime()){
                 row = i;
@@ -166,7 +162,7 @@ function drawGraph(attribute, graphData, dot) {
         var selection = chart.getSelection()[0];
         if(chart.getSelection().length > 0) {
             var time =  data.getValue(selection.row, 0);
-            loadFormNREL({timestamp: time.toJSON()});
+            loadForm({timestamp: time.toJSON()});
 
             var timeList = document.getElementById("id_timeStamps").children;
             for(i = 0; i < timeList.length; i++) {
@@ -182,4 +178,4 @@ function drawGraph(attribute, graphData, dot) {
     chart.draw(data, options);
 }
 
-window.onload = loadFormNREL({timestamp: 0});
+window.onload = loadForm({timestamp: 0});

@@ -1,6 +1,29 @@
 from django import forms
-from home.models import NREL, NodeController
+from home.models import NREL, NodeController, BData
 from django.core import serializers
+
+
+class Battery_Times(forms.Form):
+    timeStamps = forms.ModelChoiceField(queryset=BData.objects.datetimes('timestamp', 'second'), widget=forms.Select, empty_label=None)
+    queryset = BData.objects.all()
+    try:
+        queryset2 = serializers.serialize('json', queryset)
+    except:
+        print("Can't get BDatas");
+
+class Battery_Form(forms.ModelForm):
+
+    class Meta:
+        model = BData
+        fields = ('timestamp','current_soc','current_voltage','current_kw',
+                    'current_kvar', 'state', 'capacity', 'roundtrip_eff',
+                    'min_soc', 'max_charging_rate', 'max_discharging_rate',
+                    'charging_eff', 'discharging_eff', 'required_reserve',
+                    'rated_voltage', 'phase', 'current_voltage')
+
+    # Attributes
+    timestamp = forms.CharField(label='Timestamp', max_length=50,
+                          widget=forms.TextInput(attrs={'class': 'battery-attr', 'name':'Battery_timestamp'}))
 
 
 class NREL_Times(forms.Form):
@@ -9,7 +32,7 @@ class NREL_Times(forms.Form):
     try:
         queryset2 = serializers.serialize('json', queryset)
     except:
-        print("Can't get NREL")
+        print("Can't get NRELs")
 
 
 class NREL_Form(forms.ModelForm):
@@ -45,7 +68,7 @@ class GetNodes(forms.Form):
     try:
         queryset2 = serializers.serialize('json', queryset)
     except:
-        print("Can't get nodes.")
+        print("Can't get NodeControllers")
 
 
 # class BatteryForm(forms.ModelForm):

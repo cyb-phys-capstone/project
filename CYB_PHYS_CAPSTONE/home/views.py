@@ -1,24 +1,34 @@
 from django.shortcuts import render, render_to_response, get_object_or_404
 from home.forms import *
-from home.models import NREL, NodeController, Battery, Generator, Inverter
+from home.models import NREL, NodeController, Battery, BData, Generator, Inverter
 
 # Create your views here.
-def index(request):
+def nrel_times(request):
     form = NREL_Times()
     return render(request, 'client/NREL.html', {'form': form})
 
 
-def nrel(request):
+def nrel_view(request):
     try:
-        comp = NREL.objects.filter(timestamp=request.GET['timestamp']).values()[0]
+        comp = NREL.objects.filter(timestamp=request.GET['timestamp']).values().first()
     except:
-        comp = NREL.objects.values()[0]
+        comp = NREL.objects.values().first()
     form = NREL_Form(initial=comp)
     return render(request, 'client/NRELview.html', {'form': form})
 
 
-def battery_data(request):
-    return render(request, 'client/DeviceInfo/BatteryTemplate.html')
+def battery_times(request):
+    form = Battery_Times()
+    return render(request, 'client/battery.html', {'form': form})
+
+
+def battery_view(request):
+    try:
+        comp = BData.objects.filter(timestamp=request.GET['timestamp']).values().first()
+    except:
+        comp = BData.objects.values().first()
+    form = Battery_Form(initial=comp)
+    return render(request, 'client/battery.html', {'form': form})
 
 
 def generator_template(request):

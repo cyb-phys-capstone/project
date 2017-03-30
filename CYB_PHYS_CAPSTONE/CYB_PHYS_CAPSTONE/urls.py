@@ -20,9 +20,10 @@ from home import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^asset_template/', views.asset_template),
-    url(r'^NREL/', views.index),
-    url(r'^NREL_view/', views.nrel),
-    url(r'^BatteryTemplate/', views.battery_data),
+    url(r'^nrel/', views.nrel_times),
+    url(r'^nrel_view/', views.nrel_view),
+    url(r'^battery/', views.battery_times),
+    url(r'^battery_view/', views.battery_view),
     url(r'^GeneratorTemplate/', views.generator_template),
     url(r'^InverterTemplate/', views.inverter_template),
     url(r'^NodeTemplate/', views.node_template),
