@@ -4,7 +4,7 @@ google.charts.setOnLoadCallback(function(){drawGraphDefault()});
 function selectTime () {
 
     var timeChosen = {timestamp : $('#id_timeStamps').val()};
-    
+
     loadFormNREL (timeChosen);
 }
 
