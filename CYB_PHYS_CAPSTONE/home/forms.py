@@ -6,7 +6,10 @@ from django.core import serializers
 class NREL_Times(forms.Form):
     timeStamps = forms.ModelChoiceField(queryset=NREL.objects.datetimes('timestamp', 'second'), widget=forms.Select, empty_label=None)
     queryset = NREL.objects.all()
-    queryset2 = serializers.serialize('json', queryset)
+    try:
+        queryset2 = serializers.serialize('json', queryset)
+    except:
+        print("Can't get NREL")
 
 
 class NREL_Form(forms.ModelForm):
@@ -39,8 +42,10 @@ class NREL_Form(forms.ModelForm):
 
 class GetNodes(forms.Form):
     queryset = NodeController.objects.all()
-    queryset2 = serializers.serialize('json', queryset)
-
+    try:
+        queryset2 = serializers.serialize('json', queryset)
+    except:
+        print("Can't get nodes.")
 
 
 # class BatteryForm(forms.ModelForm):
