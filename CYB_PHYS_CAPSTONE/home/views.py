@@ -28,7 +28,7 @@ def battery_view(request):
     except:
         comp = BData.objects.values().first()
     form = Battery_Form(initial=comp)
-    return render(request, 'client/battery.html', {'form': form})
+    return render(request, 'client/batteryView.html', {'form': form})
 
 
 def generator_template(request):

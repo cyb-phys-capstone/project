@@ -7,7 +7,6 @@
         function populateTimes(){
           var data_BData = {{form.queryset2|safe}};
           var select = document.getElementById("time_select");
-
           for (var i = 0; i < data_BData.length; i++){
             var timestamp = data_BData[i].fields.timestamp;
             var theDate = new Date(timestamp);
@@ -31,7 +30,7 @@
     <script src="/static/lib/bootstrap-timepicker.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type='text/javascript' src='/static/src/asset_template.js' defer></script>
-    <!--<script type='text/javascript' src='/static/src/batteryView.js' defer></script>-->
+    <script type='text/javascript' src='/static/src/batteryView.js'></script>
   </head>
 
   <body onload="populateTimes()">
@@ -77,12 +76,7 @@
 
               <!-- timestamp dropdown -->
               <div class="col-lg-2 col-lg-offset-7">
-                <!--
-                <div id="time_select" onchange="selectTime(); getGraphData();">
-                    {{form.timeStamps}}
-                </div>
-              -->
-                <select id="time_select" class="form-control">
+                <select id="time_select" onchange="selectTime(); getGraphData();" class="form-control">
                 </select>
               </div>
 
@@ -94,6 +88,8 @@
 
             <!-- real-time data -->
             <div class="content row-fluid">
+
+                <div id="real_time_data"></div>
 
                 <!-- separator -->
                 <div class="separator">
