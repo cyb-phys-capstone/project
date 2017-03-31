@@ -15,15 +15,21 @@ class Battery_Form(forms.ModelForm):
 
     class Meta:
         model = BData
-        fields = ('timestamp','current_soc','current_voltage','current_kw',
-                    'current_kvar', 'state', 'capacity', 'roundtrip_eff',
-                    'min_soc', 'max_charging_rate', 'max_discharging_rate',
-                    'charging_eff', 'discharging_eff', 'required_reserve',
-                    'rated_voltage', 'phase', 'current_voltage')
+        fields = ('timestamp','current_soc','current_voltage','current_kw','current_kvar', 'state')
 
     # Attributes
     timestamp = forms.CharField(label='Timestamp', max_length=50,
                           widget=forms.TextInput(attrs={'class': 'battery-attr', 'name':'Battery_timestamp'}))
+    current_soc = forms.CharField(label='SOC (%)', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'battery-attr', 'name':'Battery_soc'}))
+    current_voltage = forms.CharField(label='Voltage (V)', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'battery-attr', 'name':'Battery_voltage'}))
+    current_kw = forms.CharField(label='KW (kW)', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'battery-attr', 'name':'Battery_kw'}))
+    current_kvar = forms.CharField(label='KVAR (kVAR)', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'battery-attr', 'name':'Battery_kvar'}))
+    state = forms.CharField(label='State', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'battery-attr', 'name':'Battery_state'}))
 
 
 class NREL_Times(forms.Form):

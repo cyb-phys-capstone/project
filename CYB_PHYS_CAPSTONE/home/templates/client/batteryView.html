@@ -1,11 +1,35 @@
-<div id="real_time_data">
+<div id="real_time_data" style="overflow-y:auto;">
 
-        <div class="container">
+        <div class="container-fluid">
+            <div class="row-fluid">
+              <div class="col-lg-4">
+                {{form.current_soc.label_tag}}
+                <br/>
+                {{form.current_soc}}
+              </div>
+              <div class="col-lg-4">
+                {{form.current_voltage.label_tag}}
+                <br/>
+                {{form.current_voltage}}
+              </div>
+              <div class="col-lg-4">
+                {{form.current_kw.label_tag}}
+                <br/>
+                {{form.current_kw}}
+              </div>
             <div>
-                {{form.timestamp.label_tag}}
+
+            <div class="row-fluid">
+              <div class="col-lg-4">
+                {{form.current_kvar.label_tag}}
                 <br/>
-                {{form.timestamp}}
+                {{form.current_kvar}}
+              </div>
+              <div class="col-lg-4">
+                {{form.state.label_tag}}
                 <br/>
-            </div>
+                {{form.state}}
+              </div>
+            <div>
         </div>
 </div>

@@ -37,15 +37,12 @@ $('#datetimepicker12').datetimepicker().on('dp.change', function(e) {
 
 function loadForm (timestamp) {
     $.get('/battery_view', timestamp, function(response){
-      $("#real_time_data").replaceWith(response);
+        $("#real_time_data").replaceWith(response);
 
-        //$("#NREL_data_viewer").replaceWith(response);
-/*
-        var list = document.getElementsByClassName("nrel-attr");
+        var list = document.getElementsByClassName("battery-attr");
         for(i = 0; i < list.length; i++) {
             list[i].setAttribute("disabled", "true");
         }
-        */
     });
 }
 
