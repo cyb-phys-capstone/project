@@ -32,7 +32,9 @@ def battery_view(request):
 
 
 def generator_template(request):
-    return render(request, 'client/DeviceInfo/GeneratorTemplate.html')
+    gdata = GData.objects.all()
+    form = GeneratorData()
+    return render(request, 'client/DeviceInfo/GeneratorTemplate.html',{'form':form})
 
 
 def inverter_template(request):

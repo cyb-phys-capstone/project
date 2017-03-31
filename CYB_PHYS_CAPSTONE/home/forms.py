@@ -1,7 +1,10 @@
 from django import forms
-from home.models import NREL, NodeController, BData
+from home.models import NREL, NodeController, BData, GData
 from django.core import serializers
 
+class GeneratorData(forms.Form):
+    generators = GData.objects.all()
+    generatorData = serializers.serialize('json', generators)
 
 class Battery_Times(forms.Form):
     timeStamps = forms.ModelChoiceField(queryset=BData.objects.datetimes('timestamp', 'second'), widget=forms.Select, empty_label=None)
@@ -46,7 +49,6 @@ class NREL_Form(forms.ModelForm):
     class Meta:
         model = NREL
         fields = ('timestamp', 'ghi', 'dni', 'air_temp', 'rel_humid', 'wind_speed', 'wind_dir', 'station_pressure')
-
 
     # Attributes
     timestamp = forms.CharField(label='Timestamp', max_length=50,

@@ -1,17 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- Latest compiled and minified CSS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> <!-- jQuery library -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <script defer type='text/javascript' src='/CYB_PHYS_CAPSTONE/home/static/src/DeviceDataPopulate.js'></script>
-
     <title>Generator Data</title>
-</head>
-<body>
+      <script type="text/javascript">
+                  var generatorData = {{form.generatorData}};
+                          //populate a SET of all times with a function
+      </script>
 
-</body>
+
+    <link rel="stylesheet" href="/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/asset.css">
+    <link rel="stylesheet" href="/static/lib/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/static/lib/bootstrap-timepicker.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="/static/lib/moment.min.js"></script>
+    <script src="/static/lib/bootstrap-datetimepicker.min.js"></script>
+    <script src="/static/lib/bootstrap-timepicker.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type='text/javascript' src='/static/src/asset_template.js' defer></script>
+  </head>
+
+  <body>
+
+    <div class="root">
+
+      <div class="container-fluid" style="height:100%;overflow:auto;">
+
+        <!-- left column for menu and calendar -->
+        <div class="col-lg-3" style="height:100%;">
+
+          <!-- menu -->
+          <div style="height:65%;">
+            <!-- TODO: fill in menu -->
+
+          </div>
+
+          <!-- calendar -->
+          <div class="calendar-center" style="overflow:hidden;height:35%;">
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <div id="datetimepicker12"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+        </div>
+
+        <!-- right column for content -->
+        <div class="col-lg-9" style="height:100%;">
+
+          <!-- "card" view to hold content -->
+          <div class="card">
+
+            <!-- header -->
+            <div class="header row-fluid">
+
+              <!-- title -->
+              <div class="col-lg-3">
+                <p>Generator Data</p>
+              </div>
+
+              <!-- timestamp dropdown -->
+              <div class="col-lg-2 col-lg-offset-7">
+                  <!--- TODO make query with "time_select" && "attribute_select" -->
+                  <!--- TODO update "data" id's innerHtml -->
+
+                <select class="form-control" id="time_select" onChange="updateData();">
+                    <!---TODO The values should be updated with every 30 mins-->
+                  <option value="0">00:00</option>
+                  <option value="1">00:30</option>
+                  <option value="2">01:00</option>
+                </select>
+              </div>
+
+              <!-- separator -->
+              <div class="separator">
+              </div>
+
+            </div>
+
+            <!-- real-time data -->
+            <div class="content row-fluid">
+                <div class="col-md-12" id ="data">
+                    <!---TODO to be populated with "attribute_select" ID && "time_select" ids when either are selected-->
+
+                </div>
+                <!-- separator -->
+                <div class="separator">
+                </div>
+
+            </div>
+
+            <!-- graph header -->
+            <div class="header row-fluid">
+
+              <!-- title -->
+              <div class="col-lg-3">
+                <p>Daily Tracking</p>
+              </div>
+
+              <!-- data dropdown -->
+              <div class="col-lg-2 col-lg-offset-7">
+                  <!--- TODO when "selected=True" get value of "attribute_select" -->
+                  <!--- TODO get value of the selected "time_select" id -->
+                  <!--- TODO make query with "time_select" && "attribute_select" -->
+                  <!--- TODO update "data" id's innerHtml -->
+
+                <select class="form-control" id="attributes_select" onChange="updateData">
+                  <option value="nc_id">NodeController ID</option>
+                  <option value="manufacturer">Manufacturer</option>
+                  <option value="dimension">Dimension</option>
+                  <option value="weight">Weight</option>
+                  <option value="fuel_type">Fuel Type</option>
+                  <option value="smart_control">Smart Control</option>
+                  <option value="frequency">Frequency</option>
+                  <option value="electrical_efficiency">Electrical Efficiency</option>
+                  <option value="thermal_efficiency">Thermal Efficiency</option>
+                  <option value="capacity">Capacity</option>
+                  <option value="voltage">Voltage</option>
+                  <option value="power_factor">Power Factor</option>
+                  <option value="phase">Phase</option>
+                  <option value="max_real_power">Maximum Real Power</option>
+                  <option value="min_real_power">Minimum Real Power</option>
+                  <option value="max_reactive_power">Maximum Reactive Power</option>
+                  <option value="min_reactive_power">Minimum Reactive Power</option>
+                  <option value="max_voltage">Max Voltage</option>
+                </select>
+              </div>
+
+              <!-- separator -->
+              <div class="separator">
+              </div>
+
+            </div>
+
+            <!-- graph -->
+            <div class="content row-fluid">
+
+              <!-- Insert google graph here -->
+              <div id="google_graph"></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </body>
+
 </html>
+
+
+
