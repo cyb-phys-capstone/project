@@ -35,6 +35,11 @@ $('#datetimepicker12').datetimepicker().on('dp.change', function(e) {
     getGraphData();
 });
 
+function loadTimes(){
+  //var bDatas = {{form.queryset2|safe}};
+  //console.log(bDatas);
+}
+
 function loadForm (timestamp) {
   /* TODO
     $.get('/NREL_view', timestamp, function(response){
@@ -178,4 +183,5 @@ function drawGraph(attribute, graphData, dot) {
     chart.draw(data, options);
 }
 
+window.onload = loadTimes();
 window.onload = loadForm({timestamp: 0});

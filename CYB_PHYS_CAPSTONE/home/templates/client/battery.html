@@ -4,7 +4,21 @@
     <meta charset="UTF-8">
     <title>Battery</title>
     <script type="text/javascript">
-        var data_BData = {{form.queryset2|safe}};
+        function populateTimes(){
+          var data_BData = {{form.queryset2|safe}};
+          var select = document.getElementById("time_select");
+
+          for (var i = 0; i < data_BData.length; i++){
+            var timestamp = data_BData[i].fields.timestamp;
+            var theDate = new Date(timestamp);
+            var str = theDate.getHours() + ":" + theDate.getMinutes();
+
+            var option = document.createElement("option");
+            option.value = timestamp;
+            option.text = str;
+            select.add(option);
+          }
+        }
     </script>
     <link rel="stylesheet" href="/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/asset.css">
@@ -17,9 +31,10 @@
     <script src="/static/lib/bootstrap-timepicker.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type='text/javascript' src='/static/src/asset_template.js' defer></script>
+    <!--<script type='text/javascript' src='/static/src/batteryView.js' defer></script>-->
   </head>
 
-  <body>
+  <body onload="populateTimes()">
 
     <div class="root">
 
@@ -62,9 +77,13 @@
 
               <!-- timestamp dropdown -->
               <div class="col-lg-2 col-lg-offset-7">
+                <!--
                 <div id="time_select" onchange="selectTime(); getGraphData();">
                     {{form.timeStamps}}
                 </div>
+              -->
+                <select id="time_select" class="form-control">
+                </select>
               </div>
 
               <!-- separator -->
