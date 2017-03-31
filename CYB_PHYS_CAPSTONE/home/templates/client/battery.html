@@ -4,20 +4,13 @@
     <meta charset="UTF-8">
     <title>Battery</title>
     <script type="text/javascript">
-        function populateTimes(){
-          var data_BData = {{form.queryset2|safe}};
-          var select = document.getElementById("time_select");
-          for (var i = 0; i < data_BData.length; i++){
-            var timestamp = data_BData[i].fields.timestamp;
-            var theDate = new Date(timestamp);
-            var str = theDate.getHours() + ":" + theDate.getMinutes();
-
-            var option = document.createElement("option");
-            option.value = timestamp;
-            option.text = str;
-            select.add(option);
-          }
+        function init(){
+          var data = {{form.queryset2|safe}};
+          setup(data);
         }
+        document.addEventListener("DOMContentLoaded", function(event) {
+          init();
+        });
     </script>
     <link rel="stylesheet" href="/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/asset.css">
@@ -29,11 +22,10 @@
     <script src="/static/lib/bootstrap-datetimepicker.min.js"></script>
     <script src="/static/lib/bootstrap-timepicker.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type='text/javascript' src='/static/src/asset_template.js' defer></script>
-    <script type='text/javascript' src='/static/src/batteryView.js'></script>
+    <script type='text/javascript' src='/static/src/batteryView.js' defer></script>
   </head>
 
-  <body onload="populateTimes()">
+  <body>
 
     <div class="root">
 
@@ -107,7 +99,7 @@
 
               <!-- data dropdown -->
               <div class="col-lg-2 col-lg-offset-7">
-                <select id="data_select" class="form-control">
+                <select id="data_select" class="form-control" onchange="getGraphData()">
                   <option>SOC</option>
                   <option>Voltage</option>
                   <option>KW</option>

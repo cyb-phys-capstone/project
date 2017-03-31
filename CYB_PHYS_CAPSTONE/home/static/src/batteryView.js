@@ -1,36 +1,51 @@
 google.charts.load('current', {'packages':['corechart', 'line']});
 google.charts.setOnLoadCallback(function(){drawGraphDefault()});
 
+var asset_data;
+
+function updateTimestamps(){
+  var select = document.getElementById("time_select");
+  var current = new Date($('#datetimepicker12').datetimepicker("date")._d);
+
+  // clear the dropdown
+  $('#time_select').find('option').remove().end()
+
+  // add the times
+  for (var i = 0; i < asset_data.length; i++){
+    var timestamp = asset_data[i].fields.timestamp;
+    var theDate = new Date(timestamp);
+
+    // only get the times for today's date
+    if (theDate.getMonth() == current.getMonth() && theDate.getDate() == current.getDate() && theDate.getFullYear() == current.getFullYear()){
+      // format to 00:00
+      var str = (theDate.getHours() < 10 ? '0' : '') + theDate.getHours() + ":" + (theDate.getMinutes() < 10 ? '0' : '') + theDate.getMinutes();
+
+      // add to the dropdown
+      var option = document.createElement("option");
+      option.value = timestamp;
+      option.text = str;
+      select.add(option);
+    }
+  }
+}
+
+// Sets up the data object from Django
+function setup(data) {
+  asset_data = data;
+
+  updateTimestamps();
+}
+
 function selectTime () {
     var timeChosen = {timestamp : $('#time_select').val()};
     loadForm (timeChosen);
 }
 
-function filterTime (dateObj) {
-    var times = document.getElementById("id_timeStamps").children;
-    var newTimes = [];
-    for(i = 0; i < times.length; i++) {
-        var tempTime = new Date(times[i].value);
-
-        if( tempTime.getMonth() === dateObj.getMonth() &&
-            tempTime.getDate() === dateObj.getDate() &&
-            tempTime.getFullYear() === dateObj.getFullYear()
-        ){
-            times[i].style.display = "block";
-            newTimes.push(times[i]);
-        }else{
-            times[i].style.display = "none";
-        }
-    }
-
-    if( newTimes.length > 0){
-        newTimes[0].selected = true;
-    }
-}
-
-$('#datetimepicker12').datetimepicker().on('dp.change', function(e) {
-    var date = new Date($('#datetimepicker12').datetimepicker("date")._d);
-    filterTime(date);
+$('#datetimepicker12').datetimepicker({
+    inline: true,
+    sideBySide: true
+}).on('dp.change', function(e) {
+    updateTimestamps();
     selectTime();
     getGraphData();
 });
@@ -47,30 +62,32 @@ function loadForm (timestamp) {
 }
 
 function getTimeStamp () {
-    return $('#id_timeStamps').val();
+    return $('#time_select').val();
 }
 
 function getDataId (name) {
     var dataId = "";
-/* TODO
-    if(name === "GHI"){
-        dataId = "ghi";
-    }else if(name === "DNI") {
-        dataId = "dni";
-    }else if(name === "DHI") {
-        dataId =  "dhi";
-    }else if(name === "Air Temp.") {
-        dataId = "air_temp";
-    }else if(name === "Rel. Humid") {
-        dataId = "rel_humid";
-    }else if(name === "Wind Speed") {
-        dataId = "wind_speed";
-    }else if(name === "Wind Dir.") {
-        dataId = "wind_dir";
-    }else if(name === "Station Pressure") {
-        dataId = "station_pressure";
+
+    switch (name) {
+      case "SOC":
+        dataId = "current_soc";
+        break;
+      case "Voltage":
+        dataId = "current_voltage";
+        break;
+      case "KW":
+        dataId = "current_kw";
+        break;
+      case "KVAR":
+        dataId = "current_kvar";
+        break;
+      case "State":
+        dataId = "state";
+        break;
+      default:
+        break;
     }
-*/
+
     return dataId;
 }
 
@@ -87,10 +104,10 @@ function getGraphData () {
 
     var graphData = [];
     var currentTime = new Date(getTimeStamp());
-/*
-    for (i = 0; i < data_BData.length; i++) {
 
-        var tempTime = new Date(data_BData[i].fields["timestamp"]);
+    for (i = 0; i < asset_data.length; i++) {
+
+        var tempTime = new Date(asset_data[i].fields["timestamp"]);
         if( currentTime.getDate() === tempTime.getDate() &&
             currentTime.getMonth() === tempTime.getMonth() &&
             currentTime.getFullYear() === tempTime.getFullYear()
@@ -98,16 +115,14 @@ function getGraphData () {
 
             var dataSet = [];
             dataSet.push(tempTime);
-            dataSet.push(data_BData[i].fields[attribute]);
+            dataSet.push(asset_data[i].fields[attribute]);
             if(currentTime.getTime() === tempTime.getTime()){
                 row = i;
-                console.log(row);
             }
             graphData.push(dataSet);
         }
 
     }
-    */
 
     drawGraph(attribute, graphData, row);
 }
@@ -116,10 +131,10 @@ function drawGraphDefault () {
     var graphData = [];
     var attribute = "current_soc";
     var row = 0;
-    /*
-    var currentTime = new Date(data_BData[0].fields["timestamp"]);
-    for (i = 0; i < data_BData.length; i++) {
-        var tempTime = new Date(data_BData[i].fields["timestamp"]);
+
+    var currentTime = new Date(asset_data[0].fields["timestamp"]);
+    for (i = 0; i < asset_data.length; i++) {
+        var tempTime = new Date(asset_data[i].fields["timestamp"]);
         if( currentTime.getDate() === tempTime.getDate() &&
             currentTime.getMonth() === tempTime.getMonth() &&
             currentTime.getFullYear() === tempTime.getFullYear()
@@ -127,11 +142,10 @@ function drawGraphDefault () {
 
             var dataSet = [];
             dataSet.push(tempTime);
-            dataSet.push(data_BData[i].fields[attribute]);
+            dataSet.push(asset_data[i].fields[attribute]);
             graphData.push(dataSet);
         }
     }
-    */
 
     drawGraph(attribute, graphData, row);
 }
@@ -158,7 +172,7 @@ function drawGraph(attribute, graphData, dot) {
             var time =  data.getValue(selection.row, 0);
             loadForm({timestamp: time.toJSON()});
 
-            var timeList = document.getElementById("id_timeStamps").children;
+            var timeList = document.getElementById("time_select").children;
             for(i = 0; i < timeList.length; i++) {
                 var tempTime = new Date(timeList[i].value);
 
