@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^nrel_view/', views.nrel_view),
     url(r'^battery/', views.battery_times),
     url(r'^battery_view/', views.battery_view),
-    url(r'^GeneratorTemplate/', views.generator_template),
+    url(r'^generator/',views.generator_times),
     url(r'^InverterTemplate/', views.inverter_template),
     url(r'^NodeTemplate/', views.node_template),
     url(r'^DeviceSelector/', views.device_selector),

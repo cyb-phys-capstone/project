@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Generator Data</title>
       <script type="text/javascript">
-                  var generatorData = {{form.generatorData}};
+                  var generatorData = {{form.queryset2|safe}};
                           //populate a SET of all times with a function
       </script>
 
@@ -66,14 +66,9 @@
 
               <!-- timestamp dropdown -->
               <div class="col-lg-2 col-lg-offset-7">
-                  <!--- TODO make query with "time_select" && "attribute_select" -->
-                  <!--- TODO update "data" id's innerHtml -->
 
                 <select class="form-control" id="time_select" onChange="updateData();">
-                    <!---TODO The values should be updated with every 30 mins-->
-                  <option value="0">00:00</option>
-                  <option value="1">00:30</option>
-                  <option value="2">01:00</option>
+
                 </select>
               </div>
 
@@ -86,8 +81,6 @@
             <!-- real-time data -->
             <div class="content row-fluid">
                 <div class="col-md-12" id ="data">
-                    <!---TODO to be populated with "attribute_select" ID && "time_select" ids when either are selected-->
-
                 </div>
                 <!-- separator -->
                 <div class="separator">
@@ -105,19 +98,12 @@
 
               <!-- data dropdown -->
               <div class="col-lg-2 col-lg-offset-7">
-                  <!--- TODO when "selected=True" get value of "attribute_select" -->
-                  <!--- TODO get value of the selected "time_select" id -->
-                  <!--- TODO make query with "time_select" && "attribute_select" -->
-                  <!--- TODO update "data" id's innerHtml -->
-
                 <select class="form-control" id="attributes_select" onChange="updateData">
                   <option value="voltage">Voltage</option>
                   <option value="current">Current</option>
                   <option value="real_power_kw">Real Power(kW)</option>
                   <option value="real_power_kvar">Real Power(kVAR)</option>
                   <option value="frequency">Frequency</option>
-
-
                 </select>
               </div>
 
@@ -146,6 +132,3 @@
   </body>
 
 </html>
-
-
-

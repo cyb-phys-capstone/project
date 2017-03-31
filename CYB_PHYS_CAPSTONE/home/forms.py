@@ -2,9 +2,35 @@ from django import forms
 from home.models import NREL, NodeController, BData, GData
 from django.core import serializers
 
-class GeneratorData(forms.Form):
-    generators = GData.objects.all()
-    generatorData = serializers.serialize('json', generators)
+
+class Generator_Times(forms.Form):
+    timeStamps = forms.ModelChoiceField(queryset=GData.objects.datetimes('timestamp', 'second'), widget=forms.Select, empty_label=None)
+    queryset = GData.objects.all()
+    try:
+        queryset2 = serializers.serialize('json', queryset)
+    except:
+        print("Can't get GDatas");
+
+class Generator_Form(forms.Form):
+    class Meta:
+        model = GData
+        fields = ('timestamp','voltage','current','real_power_kw','real_power_kvar','frequency')
+
+    #Attributes
+    timestamp = forms.CharField(label='Timestamp',max_length=50,
+                        widget=forms.TextInput(attrs={'class':'generator-attr','name':'Generator_timestamp'}))
+    voltage = forms.CharField(label='Voltage (V)',max_length=30,
+                        widget=forms.TextInput(attrs={'class':'generator-attr','name':'Generator_voltage'}))
+    current = forms.CharField(label='Current (A)',max_length=30,
+                        widget=forms.TextInput(attrs={'class':'generator-attr','name':'Generator_current'}))
+    real_power_kw = forms.CharField(label='Real Power (kW)', max_length=30,
+                        widget=forms.TextInput(attrs={'class':'generator-attr', 'name':'Generator_real_power_kw'}))
+    real_power_kvar = forms.CharField(label='Real Power (kVAR)', max_length=30,
+                                    widget=forms.TextInput(
+                                        attrs={'class': 'generator-attr', 'name': 'Generator_real_power_kvar'}))
+    frequency = forms.CharField(label='Frequency (Hz)', max_length=30,
+                                    widget=forms.TextInput(
+                                        attrs={'class': 'generator-attr', 'name': 'Generator_frequency'}))
 
 class Battery_Times(forms.Form):
     timeStamps = forms.ModelChoiceField(queryset=BData.objects.datetimes('timestamp', 'second'), widget=forms.Select, empty_label=None)

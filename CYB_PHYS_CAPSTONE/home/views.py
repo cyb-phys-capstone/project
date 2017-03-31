@@ -30,11 +30,17 @@ def battery_view(request):
     form = Battery_Form(initial=comp)
     return render(request, 'client/batteryView.html', {'form': form})
 
+def generator_times(request):
+    form = Generator_Times()
+    return render(request, 'client/generator.html',{'form':form})
 
-def generator_template(request):
-    gdata = GData.objects.all()
-    form = GeneratorData()
-    return render(request, 'client/DeviceInfo/GeneratorTemplate.html',{'form':form})
+def generator_view(request):
+    try:
+        comp = GData.objects.filter(timestamp=request.GET['timestamp']).values().first()
+    except:
+        comp = GData.objects.values().first()
+    form = Generator_Form(initial=comp)
+    return render(request, 'client/generatorView.html', {'form': form})
 
 
 def inverter_template(request):
