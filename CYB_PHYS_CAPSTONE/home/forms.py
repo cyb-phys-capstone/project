@@ -11,7 +11,8 @@ class Generator_Times(forms.Form):
     except:
         print("Can't get GDatas");
 
-class Generator_Form(forms.Form):
+class Generator_Form(forms.ModelForm):
+
     class Meta:
         model = GData
         fields = ('timestamp','voltage','current','real_power_kw','real_power_kvar','frequency')
@@ -38,7 +39,7 @@ class Battery_Times(forms.Form):
     try:
         queryset2 = serializers.serialize('json', queryset)
     except:
-        print("Can't get BDatas");
+        print("Can't get BDatas")
 
 class Battery_Form(forms.ModelForm):
 

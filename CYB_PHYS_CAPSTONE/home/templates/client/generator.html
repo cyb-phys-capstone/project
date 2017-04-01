@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <title>Generator Data</title>
       <script type="text/javascript">
-                  var generatorData = {{form.queryset2|safe}};
-                          //populate a SET of all times with a function
+          function init(){
+            var data = {{form.queryset2|safe}};
+            setup(data);
+          }
+            document.addEventListener("DOMContentLoaded", function(event) {
+                init();
+            });
       </script>
 
 
@@ -20,6 +25,7 @@
     <script src="/static/lib/bootstrap-timepicker.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type='text/javascript' src='/static/src/asset_template.js' defer></script>
+      <script type="text/javascript" src="/static/src/generatorView.js"defer></script>
   </head>
 
   <body>
@@ -67,7 +73,7 @@
               <!-- timestamp dropdown -->
               <div class="col-lg-2 col-lg-offset-7">
 
-                <select class="form-control" id="time_select" onChange="updateData();">
+                <select class="form-control" id="time_select" onChange="selectTime(); getGraphData();">
 
                 </select>
               </div>
@@ -98,12 +104,12 @@
 
               <!-- data dropdown -->
               <div class="col-lg-2 col-lg-offset-7">
-                <select class="form-control" id="attributes_select" onChange="updateData">
-                  <option value="voltage">Voltage</option>
-                  <option value="current">Current</option>
-                  <option value="real_power_kw">Real Power(kW)</option>
-                  <option value="real_power_kvar">Real Power(kVAR)</option>
-                  <option value="frequency">Frequency</option>
+                <select class="form-control" id="data_select" onChange="getGraphData()">
+                  <option>Voltage</option>
+                  <option>Current</option>
+                  <option>Real Power(kW)</option>
+                  <option>Real Power(kVAR)</option>
+                  <option>Frequency</option>
                 </select>
               </div>
 
