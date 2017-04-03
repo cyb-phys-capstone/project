@@ -57,7 +57,7 @@ def solar_times(request):
     form=Solar_Times()
     return render (request, 'client/solar.html',{'form':form})
 
-def solar_View(request):
+def solar_view(request):
     try:
         comp = SData.objects.filter(timestamp=request.GET['timestamp']).values().first()
     except:
