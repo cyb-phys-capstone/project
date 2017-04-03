@@ -76,6 +76,13 @@
                     <td>{{ entry.nc_id.id }}</td>
                 </tr>
             {% endfor %}
+            {% for entry in solarHTML %}
+                <tr>
+                    <td >{{ entry.id }}</td>
+                    <td>Solar</td>
+                    <td>{{ entry.nc_id.id }}</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>

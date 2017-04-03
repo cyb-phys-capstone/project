@@ -1,5 +1,5 @@
 from django import forms
-from home.models import NREL, NodeController, BData, GData
+from home.models import NREL, NodeController, BData, GData, SData
 from django.core import serializers
 
 
@@ -61,7 +61,27 @@ class Battery_Form(forms.ModelForm):
     state = forms.CharField(label='State', max_length=30,
                           widget=forms.TextInput(attrs={'class': 'battery-attr', 'name':'Battery_state'}))
 
+class Solar_Times(forms.Form):
+    timeStamps = forms.ModelChoiceField(queryset=BData.objects.datetimes('timestamp', 'second'), widget=forms.Select, empty_label=None)
+    queryset = SData.objects.all()
+    try:
+        queryset2 = serializers.serialize('json', queryset)
+    except:
+        print("Can't get SDatas")
 
+class Solar_Form(forms.ModelForm):
+    class Meta:
+        model=SData
+        fields=('timestamp','voltage','current', 'real_power_kw')
+        
+    #Attrubytes
+    voltage = forms.CharField(label='Voltage (V)', max_length=30,
+                             widget=forms.TextInput(attrs={'class':'solar_attr','name':'Solar_voltage'}))
+    current = forms.CharField(label='Current (A)',max_length=30,
+                        widget=forms.TextInput(attrs={'class':'solar-attr','name':'Solar_current'}))
+    real_power_kw = forms.CharField(label='Real Power (kW)', max_length=30,
+                        widget=forms.TextInput(attrs={'class':'solar-attr', 'name':'Solar_real_power_kw'}))
+    
 class NREL_Times(forms.Form):
     timeStamps = forms.ModelChoiceField(queryset=NREL.objects.datetimes('timestamp', 'second'), widget=forms.Select, empty_label=None)
     queryset = NREL.objects.all()
