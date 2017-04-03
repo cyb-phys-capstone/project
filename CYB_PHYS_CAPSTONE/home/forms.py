@@ -1,5 +1,5 @@
 from django import forms
-from home.models import NREL, NodeController, BData, GData, Generator, Inverter, Battery
+from home.models import NREL, NodeController, BData, GData, Generator, Inverter, Battery, SData
 from django.core import serializers
 
 class PopulateTree:
@@ -73,7 +73,27 @@ class Battery_Form(forms.ModelForm):
     state = forms.CharField(label='State', max_length=30,
                           widget=forms.TextInput(attrs={'class': 'battery-attr', 'name':'Battery_state'}))
 
+class Solar_Times(forms.Form):
+    timeStamps = forms.ModelChoiceField(queryset=BData.objects.datetimes('timestamp', 'second'), widget=forms.Select, empty_label=None)
+    queryset = SData.objects.all()
+    try:
+        queryset2 = serializers.serialize('json', queryset)
+    except:
+        print("Can't get SDatas")
 
+class Solar_Form(forms.ModelForm):
+    class Meta:
+        model=SData
+        fields=('timestamp','voltage','current', 'real_power_kw')
+        
+    #Attrubytes
+    voltage = forms.CharField(label='Voltage (V)', max_length=30,
+                             widget=forms.TextInput(attrs={'class':'solar_attr','name':'Solar_voltage'}))
+    current = forms.CharField(label='Current (A)',max_length=30,
+                        widget=forms.TextInput(attrs={'class':'solar-attr','name':'Solar_current'}))
+    real_power_kw = forms.CharField(label='Real Power (kW)', max_length=30,
+                        widget=forms.TextInput(attrs={'class':'solar-attr', 'name':'Solar_real_power_kw'}))
+    
 class NREL_Times(forms.Form):
     timeStamps = forms.ModelChoiceField(queryset=NREL.objects.datetimes('timestamp', 'second'), widget=forms.Select, empty_label=None)
     queryset = NREL.objects.all()
@@ -91,23 +111,23 @@ class NREL_Form(forms.ModelForm):
 
     # Attributes
     timestamp = forms.CharField(label='Timestamp', max_length=50,
-                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_timestamp'}))
-    ghi = forms.CharField(label='GHI', max_length=30,
-                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_ghi'}))
-    dni = forms.CharField(label='DNI', max_length=30,
-                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_dni'}))
-    dhi = forms.CharField(label='DHI', max_length=30,
-                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_dhi'}))
-    air_temp = forms.CharField(label='Air Temp', max_length=30,
-                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_air_temp'}))
-    rel_humid = forms.CharField(label='Rel. Humid', max_length=30,
-                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_rel_humid'}))
-    wind_speed = forms.CharField(label='Wind Speed', max_length=30,
-                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_wind_speed'}))
-    wind_dir = forms.CharField(label='Wind Dir', max_length=30,
-                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_wind_dir'}))
-    station_pressure = forms.CharField(label='Station Pressure', max_length=30,
-                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_station_pressure'}))
+                          widget=forms.TextInput(attrs={'class': 'asset-attr', 'name':'Nrel_timestamp'}))
+    ghi = forms.CharField(label='GHI (W/m^2)', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'asset-attr', 'name':'Nrel_ghi'}))
+    dni = forms.CharField(label='DNI (W/m^2)', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'asset-attr', 'name':'Nrel_dni'}))
+    dhi = forms.CharField(label='DHI (W/m^2)', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'asset-attr', 'name':'Nrel_dhi'}))
+    air_temp = forms.CharField(label='Air Temp (*C)', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'asset-attr', 'name':'Nrel_air_temp'}))
+    rel_humid = forms.CharField(label='Rel. Humid (%)', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'asset-attr', 'name':'Nrel_rel_humid'}))
+    wind_speed = forms.CharField(label='Wind Speed (m/s)', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'asset-attr', 'name':'Nrel_wind_speed'}))
+    wind_dir = forms.CharField(label='Wind Dir (*N)', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'asset-attr', 'name':'Nrel_wind_dir'}))
+    station_pressure = forms.CharField(label='Station Pressure (mBar)', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'asset-attr', 'name':'Nrel_station_pressure'}))
 
 
 class GetNodes(forms.Form):

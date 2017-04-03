@@ -1,11 +1,11 @@
 from django.shortcuts import render, render_to_response, get_object_or_404
 from home.forms import *
-from home.models import NREL, NodeController, Battery, BData, Generator, Inverter
+from home.models import NREL, NodeController, Battery, BData, Generator, Inverter, Solar, SData
 
 # Create your views here.
 def nrel_times(request):
     form = NREL_Times()
-    return render(request, 'client/NREL.html', {'form': form})
+    return render(request, 'client/nrel.html', {'form': form})
 
 
 def nrel_view(request):
@@ -14,7 +14,7 @@ def nrel_view(request):
     except:
         comp = NREL.objects.values().first()
     form = NREL_Form(initial=comp)
-    return render(request, 'client/NRELview.html', {'form': form})
+    return render(request, 'client/nrelView.html', {'form': form})
 
 
 def battery_times(request):
@@ -53,6 +53,17 @@ def node_template(request):
 def asset_template(request):
     return render(request, 'client/asset_template.html')
 
+def solar_times(request):
+    form=Solar_Times()
+    return render (request, 'client/solar.html',{'form':form})
+
+def solar_view(request):
+    try:
+        comp = SData.objects.filter(timestamp=request.GET['timestamp']).values().first()
+    except:
+        comp = SData.objects.values().first()
+    form = Solar_Form(initial=comp)
+    return render(request, 'client/solarView.html', {'form': form})
 
 def treeDoodle(request):
     form = PopulateTree()
@@ -75,6 +86,7 @@ def device_selector(request):
                     'generatorHTML': generators,
                     'invertersHTML': inverters,
                     'batteriesHTML': batteries,
+                    'solarHTML':solars,
                     'button': ' <button type="button">Click Me!</button> '
                    }
                   )

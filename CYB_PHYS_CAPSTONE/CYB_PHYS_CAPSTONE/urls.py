@@ -27,6 +27,8 @@ urlpatterns = [
     url(r'^generator/',views.generator_times),
     url(r'^generator_view/', views.generator_view),
     url(r'^InverterTemplate/', views.inverter_template),
+    url(r'^solar/', views.solar_times),
+    url(r'^solar_view',views.solar_view),
     url(r'^NodeTemplate/', views.node_template),
     url(r'^DeviceSelector/', views.device_selector),
     url(r'^tree/', views.treeDoodle)

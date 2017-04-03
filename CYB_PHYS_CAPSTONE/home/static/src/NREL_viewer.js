@@ -1,13 +1,13 @@
-google.charts.load('current', {'packages':['corechart', 'line']});
+//google.charts.load('current', {'packages':['corechart', 'line']});
 google.charts.setOnLoadCallback(function(){drawGraphDefault()});
 
 function selectTime () {
 
     var timeChosen = {timestamp : $('#id_timeStamps').val()};
 
-    loadFormNREL (timeChosen);
+    loadForm (timeChosen);
 }
-
+/*
 function filterTime (dateObj) {
     var times = document.getElementById("id_timeStamps").children;
     var newTimes = [];
@@ -29,7 +29,9 @@ function filterTime (dateObj) {
         newTimes[0].selected = true;
     }
 }
+*/
 
+/*
 $('#datetimepicker12').datetimepicker({
     inline: true,
     sideBySide: true
@@ -39,9 +41,9 @@ $('#datetimepicker12').datetimepicker({
     selectTime();
     getGraphData();
 });
+*/
 
-
-function loadFormNREL (timestamp) {
+function loadForm (timestamp) {
     $.get('/nrel_view', timestamp, function(response){
         $("#NREL_data_viewer").replaceWith(response);
 
@@ -81,7 +83,7 @@ function getDataId (name) {
 
     return dataId;
 }
-
+/*
 function getGraphData () {
 
     var selection = document.getElementById("data_select").children;
@@ -117,14 +119,14 @@ function getGraphData () {
 
     drawGraph(attribute, graphData, row);
 }
-
+*/
 function drawGraphDefault () {
     var graphData = [];
     var attribute = "ghi";
     var row = 0;
-    var currentTime = new Date(data_NREL[0].fields["timestamp"]);
-    for (i = 0; i < data_NREL.length; i++) {
-        var tempTime = new Date(data_NREL[i].fields["timestamp"]);
+    var currentTime = new Date(asset_data[0].fields["timestamp"]);
+    for (i = 0; i < asset_data.length; i++) {
+        var tempTime = new Date(asset_data[i].fields["timestamp"]);
         if( currentTime.getDate() === tempTime.getDate() &&
             currentTime.getMonth() === tempTime.getMonth() &&
             currentTime.getFullYear() === tempTime.getFullYear()
@@ -132,7 +134,7 @@ function drawGraphDefault () {
 
             var dataSet = [];
             dataSet.push(tempTime);
-            dataSet.push(data_NREL[i].fields[attribute]);
+            dataSet.push(asset_data[i].fields[attribute]);
             /*
             if(currentTime.getTime() === tempTime.getTime()){
                 row = i;
@@ -145,7 +147,7 @@ function drawGraphDefault () {
 
     drawGraph(attribute, graphData, row);
 }
-
+/*
 function drawGraph(attribute, graphData, dot) {
     var data = new google.visualization.DataTable();
     data.addColumn('datetime', 'X');
@@ -161,7 +163,7 @@ function drawGraph(attribute, graphData, dot) {
     /*google.visualization.events.addListener(chart, 'ready', function(e) {
         chart.setSelection([{row:dot,column:null}]);
     });*/
-
+/*
     google.visualization.events.addListener(chart, 'select', function(){
         var selection = chart.getSelection()[0];
         if(chart.getSelection().length > 0) {
@@ -181,5 +183,5 @@ function drawGraph(attribute, graphData, dot) {
     });
     chart.draw(data, options);
 }
-
-window.onload = loadFormNREL({timestamp: 0});
+*/
+window.onload = loadForm({timestamp: 0});
