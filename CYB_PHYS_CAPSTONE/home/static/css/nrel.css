@@ -1,3 +1,4 @@
+/*
 body {
     background-color: #E3E3E3;
 }
@@ -33,13 +34,13 @@ div, label {
     margin-top: 15%;
     font-size: 150%;
 }
-
+*/
 .nrel-container {
     display: inline-block;
-    margin-right: 10px;
     margin-bottom: 5%;
+    font-size: 18px;
 }
-
+/*
 #hiddenData {
     display: none;
 }
@@ -47,3 +48,4 @@ div, label {
 div.timepicker {
     display: none;
 }
+*/
