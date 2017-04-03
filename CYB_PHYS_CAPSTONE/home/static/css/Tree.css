@@ -39,11 +39,7 @@ body {
 }
 
 /* optional Container STYLES */
-.chart {
-    height: 550px;
-    margin: 5px;
-    width: 900px;
-}
+
 
 .Treant > .node {
 }
@@ -84,4 +80,12 @@ body {
 
 .blue {
     background-color: #A2BDFD;
+}
+
+.red {
+    background-color: tomato;
+}
+
+.green {
+    background-color: #67b168;
 }

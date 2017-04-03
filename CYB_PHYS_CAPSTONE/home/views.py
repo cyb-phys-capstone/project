@@ -55,8 +55,14 @@ def asset_template(request):
 
 
 def treeDoodle(request):
-    return render(request, 'client/Tree/tree.html')
+    form = PopulateTree()
+    print(form)
 
+    return render(request, 'client/Tree/tree.html',
+                  {
+                      'form': form
+                  }
+                  )
 
 def device_selector(request):
     nodes = NodeController.objects.all()

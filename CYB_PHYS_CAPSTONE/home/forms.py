@@ -1,7 +1,19 @@
 from django import forms
-from home.models import NREL, NodeController, BData, GData
+from home.models import NREL, NodeController, BData, GData, Generator, Inverter, Battery
 from django.core import serializers
 
+class PopulateTree:
+    nodes_from_db = NodeController.objects.all()
+    generators_from_db = Generator.objects.all()
+    inverters_from_db = Inverter.objects.all()
+    battery_from_db = Battery.objects.all()
+    try:
+        nodes = serializers.serialize('json', nodes_from_db)
+        generators = serializers.serialize('json', generators_from_db)
+        inverters = serializers.serialize('json', inverters_from_db)
+        batteries = serializers.serialize('json', battery_from_db)
+    except:
+        print("could not find devices")
 
 class Generator_Times(forms.Form):
     timeStamps = forms.ModelChoiceField(queryset=GData.objects.datetimes('timestamp', 'second'), widget=forms.Select, empty_label=None)

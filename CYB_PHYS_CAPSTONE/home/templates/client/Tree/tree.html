@@ -6,18 +6,72 @@
     <link rel="stylesheet" href="/static/lib/treant/treant-js-master/Treant.css">
     <link rel="stylesheet" type="text/css" href="/static/css/Tree.css">
 
-    <script src="/static/src/Tree.js"></script>
+    <link rel="stylesheet" href="/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/asset.css">
+    <link rel="stylesheet" href="/static/lib/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/static/lib/bootstrap-timepicker.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="/static/lib/moment.min.js"></script>
+    <script src="/static/lib/bootstrap-datetimepicker.min.js"></script>
+    <script src="/static/lib/bootstrap-timepicker.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type='text/javascript' src='/static/src/asset_template.js' defer></script>
 
 
     <title> Custom colored example </title>
 </head>
-<body>
-<div class="chart" id="custom-colored"> --@--</div>
-    <script src="/static/lib/treant/treant-js-master/vendor/raphael.js"></script>
-    <script src="/static/lib/treant/treant-js-master/Treant.js"></script>
+<body >
+    <div class="root">
 
-    <script>
-        var chart = new Treant(chart_config);
-    </script>
+      <div class="container-fluid">
+
+        <!-- right column for content -->
+        <div class="col" style="height:100%;">
+
+          <!-- "card" view to hold content -->
+          <div class="card">
+
+            <!-- header -->
+            <div class="header row-fluid">
+
+              <!-- title -->
+              <div class="col-lg-3">
+                <p>Device Map</p>
+              </div>
+
+              <!-- timestamp dropdown -->
+
+              <!-- separator -->
+              <div class="separator">
+              </div>
+
+            </div>
+
+            <!-- real-time data -->
+            <div class="chart" id="custom-colored"> --@--</div>
+            <script type="text/javascript" src="/static/src/generatorView.js" defer></script>
+            <script src="/static/lib/treant/treant-js-master/vendor/raphael.js"></script>
+            <script src="/static/lib/treant/treant-js-master/Treant.js"></script>
+            <script src="/static/src/Tree.js"></script>
+            <script>
+                var jsonObject = {};
+                var generatorObjects = {{form.generators|safe}};
+                var inverterObjects = {{form.inverters|safe}};
+                var batteryObjets = {{form.batteries|safe}};
+                var nodes = {{form.nodes|safe}};
+                chartBuilder(nodes, generatorObjects, inverterObjects, batteryObjets);
+            </script>
+            <script>
+
+                var chart = new Treant(chart_config);
+            </script>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
 </body>
 </html>
