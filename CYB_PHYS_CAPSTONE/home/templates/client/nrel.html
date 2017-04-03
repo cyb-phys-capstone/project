@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
-    <title>NREL</title>
+    <title>Weather Data</title>
     <script type="text/javascript">
-        var asset_data = {{form.queryset2|safe}};
+        function init(){
+          var data = {{form.queryset2|safe}};
+          setup(data);
+        }
+        document.addEventListener("DOMContentLoaded", function(event) {
+          init();
+        });
     </script>
     <link rel="stylesheet" href="/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/asset.css">
-    <link rel="stylesheet" href="/static/css/nrel.css">
     <link rel="stylesheet" href="/static/lib/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="/static/lib/bootstrap-timepicker.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -18,11 +22,11 @@
     <script src="/static/lib/bootstrap-datetimepicker.min.js"></script>
     <script src="/static/lib/bootstrap-timepicker.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type='text/javascript' src='/static/src/nrelView.js' defer></script>
     <script type='text/javascript' src='/static/src/asset_template.js' defer></script>
-    <script type='text/javascript' src='/static/src/NREL_viewer.js' defer></script>
-</head>
+  </head>
 
-<body class="container">
+  <body>
 
     <div class="root">
 
@@ -60,12 +64,13 @@
 
               <!-- title -->
               <div class="col-lg-3">
-                <p>NREL</p>
+                <p>Weather Data</p>
               </div>
 
               <!-- timestamp dropdown -->
-              <div id="time_select" class="col-lg-2 col-lg-offset-7" onChange="selectTime(); getGraphData();">
-                {{form.timeStamps}}
+              <div class="col-lg-2 col-lg-offset-7">
+                <select id="time_select" onchange="selectTime(); getGraphData();" class="form-control">
+                </select>
               </div>
 
               <!-- separator -->
@@ -76,8 +81,9 @@
 
             <!-- real-time data -->
             <div class="content row-fluid">
-                <div id="NREL_data_viewer">
-                </div>
+
+                <div id="real_time_data"></div>
+
                 <!-- separator -->
                 <div class="separator">
                 </div>
@@ -93,16 +99,16 @@
               </div>
 
               <!-- data dropdown -->
-              <div class="col-lg-2 col-lg-offset-7"  onChange="getGraphData()">
-                <select class="form-control" id="data_select">
-                    <option>GHI</option>
-                    <option>DNI</option>
-                    <option>DHI</option>
-                    <option>Air Temp.</option>
-                    <option>Rel. Humid</option>
-                    <option>Wind Speed</option>
-                    <option>Wind Dir.</option>
-                    <option>Station Pressure</option>
+              <div class="col-lg-2 col-lg-offset-7">
+                <select id="data_select" class="form-control" onchange="getGraphData()">
+                  <option>GHI</option>
+                  <option>DNI</option>
+                  <option>DHI</option>
+                  <option>Air Temp.</option>
+                  <option>Rel. Humid</option>
+                  <option>Wind Speed</option>
+                  <option>Wind Dir.</option>
+                  <option>Station Pressure</option>
                 </select>
               </div>
 
@@ -127,5 +133,7 @@
       </div>
 
     </div>
-</body>
+
+  </body>
+
 </html>

@@ -5,7 +5,7 @@ from home.models import NREL, NodeController, Battery, BData, Generator, Inverte
 # Create your views here.
 def nrel_times(request):
     form = NREL_Times()
-    return render(request, 'client/NREL.html', {'form': form})
+    return render(request, 'client/nrel.html', {'form': form})
 
 
 def nrel_view(request):
@@ -14,7 +14,7 @@ def nrel_view(request):
     except:
         comp = NREL.objects.values().first()
     form = NREL_Form(initial=comp)
-    return render(request, 'client/NRELview.html', {'form': form})
+    return render(request, 'client/nrelView.html', {'form': form})
 
 
 def battery_times(request):
