@@ -3,9 +3,6 @@
 var chart_config = [];
 
 function chartBuilder(nodes, generators, inverters, batteries){
-    console.log(nodes[1]);
-    console.log(generators[0]);
-
     chart_config = {
         chart: {
             container: "#custom-colored",
@@ -25,10 +22,7 @@ function chartBuilder(nodes, generators, inverters, batteries){
                 contact: "Server",
             },
             HTMLclass: 'light-gray',
-            children: [
-
-            ]
-
+            children: []
                 }
         };
     for (var i =0; i < nodes.length; i++){
@@ -43,10 +37,11 @@ function chartBuilder(nodes, generators, inverters, batteries){
 
         //Add generator child nodes
         for (var device1 =0; device1 < generators.length; device1++){
-            if (generators[i].fields.nc_id == nodes[device1].fields.object_id){
+            if (generators[device1].fields.nc_id == nodes[i].fields.object_id){
+
                 var generator_node = { text: {
-                    name: generators[i].pk,
-                    title: generators[i].fields.manufacturer,
+                    name: generators[device1].pk,
+                    title: generators[device1].fields.manufacturer,
                     contact: "Generator"
                     },
                     HTMLclass: 'red'
@@ -56,10 +51,10 @@ function chartBuilder(nodes, generators, inverters, batteries){
         }
         //Add battery child nodes
         for (var device2 =0; device2 < batteries.length; device2++){
-            if (batteries[i].fields.nc_id == nodes[device2].fields.object_id){
+            if (batteries[device2].fields.nc_id == nodes[i].fields.object_id){
                 var battery_node = { text: {
-                    name: batteries[i].pk,
-                    title: batteries[i].fields.manufacturer,
+                    name: batteries[device2].pk,
+                    title: batteries[device2].fields.manufacturer,
                     contact: "Battery"
                     },
                     HTMLclass: 'blue'
@@ -69,10 +64,10 @@ function chartBuilder(nodes, generators, inverters, batteries){
         }
         //Add inverter child nodes
         for (var device3 =0; device3 < inverters.length; device3++){
-            if (inverters[i].fields.nc_id == nodes[device3].fields.object_id){
+            if (inverters[device3].fields.nc_id == nodes[i].fields.object_id){
                 var inverter_node = { text: {
-                    name: inverters[i].pk,
-                    title: inverters[i].fields.manufacturer,
+                    name: inverters[device3].pk,
+                    title: inverters[device3].fields.manufacturer,
                     contact: "Inverter"
                     },
                     image: "/static/assets/BatteryCharging.png",
