@@ -27,12 +27,12 @@ function chartBuilder(nodes, generators, inverters, batteries){
                 }
         };
     for (var i =0; i < nodes.length; i++){
-        console.log(nodes[i])
         var childOfEMS = { text: {
             name: nodes[i].fields.object_id,
             title: "Node",
-            contact: nodes[i].fields.manufacturer
-            },
+            manufacturer: "Manufacturer : "+nodes[i].fields.manufacturer,
+            model: "Model : "+nodes[i].fields.model
+        },
             image: "/static/assets/pi.png",
             HTMLclass: 'gray',
             children: []
@@ -44,7 +44,7 @@ function chartBuilder(nodes, generators, inverters, batteries){
 
                 var generator_node = { text: {
                     name: generators[device1].pk,
-                    title: generators[device1].fields.manufacturer,
+                    manufacturer: "Manufacturer : "+ generators[device1].fields.manufacturer,
                     contact: "Generator"
                     },
                     image: "/static/assets/generator.png",
@@ -58,7 +58,7 @@ function chartBuilder(nodes, generators, inverters, batteries){
             if (batteries[device2].fields.nc_id == nodes[i].fields.object_id){
                 var battery_node = { text: {
                     name: batteries[device2].pk,
-                    title: batteries[device2].fields.manufacturer,
+                    manufacturer: "Manufacturer : "+ batteries[device2].fields.manufacturer,
                     contact: "Battery"
                     },
                     image: "/static/assets/BatteryCharging.png",
@@ -72,7 +72,7 @@ function chartBuilder(nodes, generators, inverters, batteries){
             if (inverters[device3].fields.nc_id == nodes[i].fields.object_id){
                 var inverter_node = { text: {
                     name: inverters[device3].pk,
-                    title: inverters[device3].fields.manufacturer,
+                    manufacturer: "Manufacturer : "+ inverters[device3].fields.manufacturer,
                     contact: "Inverter"
                     },
                     image: "/static/assets/inverter.png",

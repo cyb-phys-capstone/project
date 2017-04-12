@@ -2026,6 +2026,8 @@
 
 		textClass: {
 			name:	'node-name',
+            manufacturer: 'node-manufacturer',
+            model: 'node-model',
 			title:	'node-title',
 			desc:	'node-desc',
 			contact: 'node-contact',
