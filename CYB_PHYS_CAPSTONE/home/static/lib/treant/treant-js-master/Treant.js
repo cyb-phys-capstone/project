@@ -2026,9 +2026,20 @@
 
 		textClass: {
 			name:	'node-name',
+            manufacturer: 'node-manufacturer',
+            model: 'node-model',
 			title:	'node-title',
 			desc:	'node-desc',
-			contact: 'node-contact'
+			contact: 'node-contact',
+            voltage: 'node-phase', // Generator
+            current_voltage: 'node-current_voltage',//Battery
+            charging_efficiency: 'node-charging_efficiency',//Battery
+            frequency: 'node-frequency',// Generator
+            voltage: 'node-voltage',// Generator
+            phase: ' phase',//Inverter
+            capacity:'capacity',//Inverter
+            efficiency: 'efficiency',// Inverter
+            input_voltage : 'input_voltage',// Inverter
 		}
 	};
 
