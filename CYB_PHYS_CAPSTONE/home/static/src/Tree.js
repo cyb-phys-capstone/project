@@ -19,8 +19,9 @@ function chartBuilder(nodes, generators, inverters, batteries){
             text: {
                 name: "EMS-1",
                 title: "ASU-Poly",
-                contact: "Server",
+                contact: "Server"
             },
+            image: "/static/assets/server.png",
             HTMLclass: 'light-gray',
             children: []
                 }
@@ -31,6 +32,7 @@ function chartBuilder(nodes, generators, inverters, batteries){
             title: "Node",
             contact: "pi"
             },
+            image: "/static/assets/pi.png",
             HTMLclass: 'gray',
             children: []
         };
@@ -44,6 +46,7 @@ function chartBuilder(nodes, generators, inverters, batteries){
                     title: generators[device1].fields.manufacturer,
                     contact: "Generator"
                     },
+                    image: "/static/assets/generator.png",
                     HTMLclass: 'red'
                 };
                 childOfEMS.children.push(generator_node);
@@ -57,6 +60,7 @@ function chartBuilder(nodes, generators, inverters, batteries){
                     title: batteries[device2].fields.manufacturer,
                     contact: "Battery"
                     },
+                    image: "/static/assets/BatteryCharging.png",
                     HTMLclass: 'blue'
                 };
                 childOfEMS.children.push(battery_node);
@@ -70,7 +74,7 @@ function chartBuilder(nodes, generators, inverters, batteries){
                     title: inverters[device3].fields.manufacturer,
                     contact: "Inverter"
                     },
-                    image: "/static/assets/BatteryCharging.png",
+                    image: "/static/assets/inverter.png",
                     HTMLclass: 'green'
                 };
                 childOfEMS.children.push(inverter_node);
