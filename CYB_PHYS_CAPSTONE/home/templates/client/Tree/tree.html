@@ -55,14 +55,14 @@
             <script src="/static/lib/treant/treant-js-master/Treant.js"></script>
             <script src="/static/src/Tree.js"></script>
             <script>
+                $('.chart').html('').load(
+                    "{% url 'treeDoodle' %"//?item_num=" + item_num
+                ); // <--- this code instead of $
                 var generatorObjects = {{form.generators|safe}};
                 var inverterObjects = {{form.inverters|safe}};
                 var batteryObjects = {{form.batteries|safe}};
                 var nodes = {{form.nodes|safe}};
                 chartBuilder(nodes, generatorObjects, inverterObjects, batteryObjects);
-            </script>
-            <script>
-
                 var chart = new Treant(chart_config);
             </script>
           </div>

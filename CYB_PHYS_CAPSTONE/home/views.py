@@ -2,6 +2,7 @@ from django.shortcuts import render, render_to_response, get_object_or_404
 from home.forms import *
 from home.models import NREL, NodeController, Battery, BData, Generator, Inverter, Solar, SData
 
+
 # Create your views here.
 def nrel_times(request):
     form = NREL_Times()
@@ -30,9 +31,11 @@ def battery_view(request):
     form = Battery_Form(initial=comp)
     return render(request, 'client/batteryView.html', {'form': form})
 
+
 def generator_times(request):
     form = Generator_Times()
     return render(request, 'client/generator.html',{'form':form})
+
 
 def generator_view(request):
     try:
@@ -50,12 +53,15 @@ def inverter_template(request):
 def node_template(request):
     return render(request, 'client/DeviceInfo/NodeTemplate.html')
 
+
 def asset_template(request):
     return render(request, 'client/asset_template.html')
+
 
 def solar_times(request):
     form=Solar_Times()
     return render (request, 'client/solar.html',{'form':form})
+
 
 def solar_view(request):
     try:
@@ -65,10 +71,10 @@ def solar_view(request):
     form = Solar_Form(initial=comp)
     return render(request, 'client/solarView.html', {'form': form})
 
+
 def treeDoodle(request):
     form = PopulateTree()
     print(form)
-
     return render(request, 'client/Tree/tree.html',
                   {
                       'form': form
