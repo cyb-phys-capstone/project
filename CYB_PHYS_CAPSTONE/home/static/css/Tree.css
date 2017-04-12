@@ -53,6 +53,25 @@ body {
 .node-name {
     font-weight: bold;
 }
+.node-name{
+    font-size: 15px;
+}
+
+.node-manufacturer{
+    font-size: 15px;
+ }
+
+.node-contact{
+    font-size: 15px;
+}
+.node-model{
+    font-size: 15px;
+}
+
+.node-title{
+    font-size: 15px;
+}
+
 
 .nodeExample1 {
     padding: 2px;
