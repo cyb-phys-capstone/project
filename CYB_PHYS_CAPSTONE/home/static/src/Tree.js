@@ -27,10 +27,11 @@ function chartBuilder(nodes, generators, inverters, batteries){
                 }
         };
     for (var i =0; i < nodes.length; i++){
+        console.log(nodes[i])
         var childOfEMS = { text: {
             name: nodes[i].fields.object_id,
             title: "Node",
-            contact: "pi"
+            contact: nodes[i].fields.manufacturer
             },
             image: "/static/assets/pi.png",
             HTMLclass: 'gray',
