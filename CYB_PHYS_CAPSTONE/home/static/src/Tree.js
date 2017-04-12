@@ -46,6 +46,10 @@ function chartBuilder(nodes, generators, inverters, batteries){
                     title: generators[device1].fields.manufacturer,
                     contact: "Generator"
                     },
+                    link: {
+                        href: "http://127.0.0.1:8000/generator/",
+                        target: "_blank"
+                     },
                     image: "/static/assets/generator.png",
                     HTMLclass: 'red'
                 };
@@ -60,6 +64,10 @@ function chartBuilder(nodes, generators, inverters, batteries){
                     title: batteries[device2].fields.manufacturer,
                     contact: "Battery"
                     },
+                    link: {
+                        href: "http://127.0.0.1:8000/battery/",
+                        target: "_blank"
+                     },
                     image: "/static/assets/BatteryCharging.png",
                     HTMLclass: 'blue'
                 };
@@ -74,6 +82,10 @@ function chartBuilder(nodes, generators, inverters, batteries){
                     title: inverters[device3].fields.manufacturer,
                     contact: "Inverter"
                     },
+                    link: {
+                        href: "http://127.0.0.1:8000/inverter/",
+                        target: "_blank"
+                     },
                     image: "/static/assets/inverter.png",
                     HTMLclass: 'green'
                 };
