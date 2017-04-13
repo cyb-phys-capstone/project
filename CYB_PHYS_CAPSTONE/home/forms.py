@@ -1,5 +1,5 @@
 from django import forms
-from home.models import NREL, NodeController, BData, GData, Generator, Inverter, Battery, SData
+from home.models import NREL, NodeController, BData, GData, Generator, Inverter, IData, Battery, SData
 from django.core import serializers
 
 class PopulateTree:
@@ -73,6 +73,32 @@ class Battery_Form(forms.ModelForm):
     state = forms.CharField(label='State', max_length=30,
                           widget=forms.TextInput(attrs={'class': 'battery-attr', 'name':'Battery_state'}))
 
+
+class Inverter_Times(forms.Form):
+    timestamps = forms.ModelChoiceField(queryset=IData.objects.datetimes('timestamp', 'second'), widget=forms.Select, empty_label=None)
+    queryset = IData.objects.all()
+    try:
+        queryset2 = serializers.serialize('json', queryset)
+    except:
+        print("Can't get IDatas")
+
+
+class Inverter_Form(forms.ModelForm):
+    class Meta:
+        model = IData
+        fields = ('timestamp','output_voltage','real_power','reactive_power','frequency','input_voltage','dc_power','battery_charge_volt','power_factor')
+
+    #Attributes
+    output_voltage = forms.CharField(label='Output Voltage (kV)',max_length=30,widget=forms.TextInput(attrs={'class':'asset-attr','name':'Inverter_output_voltage'}))
+    real_power = forms.CharField(label='Real Power (kW)',max_length=30,widget=forms.TextInput(attrs={'class':'asset-attr','name':'Inverter_real_power'}))
+    reactive_power = forms.CharField(label='Reactive Power (kVAR)',max_length=30,widget=forms.TextInput(attrs={'class':'asset-attr','name':'Inverter_reactive_power'}))
+    frequency = forms.CharField(label='Frequency (Hz)',max_length=30,widget=forms.TextInput(attrs={'class':'asset-attr','name':'Inverter_frequency'}))
+    input_voltage = forms.CharField(label='Input Voltage (V)',max_length=30,widget=forms.TextInput(attrs={'class':'asset-attr','name':'Inverter_input_voltage'}))
+    dc_power = forms.CharField(label='DC Power (kW)',max_length=30,widget=forms.TextInput(attrs={'class':'asset-attr','name':'Inverter_dc_power'}))
+    battery_charge_volt = forms.CharField(label='Battery Charging Voltage (V)',max_length=30,widget=forms.TextInput(attrs={'class':'asset-attr','name':'Inverter_battery_charge_volt'}))
+    power_factor = forms.CharField(label='Power Factor (%)',max_length=30,widget=forms.TextInput(attrs={'class':'asset-attr','name':'Inverter_power_factor'}))
+
+
 class Solar_Times(forms.Form):
     timeStamps = forms.ModelChoiceField(queryset=BData.objects.datetimes('timestamp', 'second'), widget=forms.Select, empty_label=None)
     queryset = SData.objects.all()
@@ -86,7 +112,7 @@ class Solar_Form(forms.ModelForm):
         model=SData
         fields=('timestamp','voltage','current', 'real_power_kw')
 
-    #Attrubytes
+    #Attributes
     voltage = forms.CharField(label='Voltage (V)', max_length=30,
                              widget=forms.TextInput(attrs={'class':'solar-attr','name':'Solar_voltage'}))
     current = forms.CharField(label='Current (A)',max_length=30,

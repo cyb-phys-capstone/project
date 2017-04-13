@@ -1,6 +1,6 @@
 from django.shortcuts import render, render_to_response, get_object_or_404
 from home.forms import *
-from home.models import NREL, NodeController, Battery, BData, Generator, Inverter, Solar, SData
+from home.models import NREL, NodeController, Battery, BData, Generator, Inverter, IData, Solar, SData
 
 
 # Create your views here.
@@ -30,6 +30,20 @@ def battery_view(request):
         comp = BData.objects.values().first()
     form = Battery_Form(initial=comp)
     return render(request, 'client/batteryView.html', {'form': form})
+
+
+def inverter_times(request):
+    form = Inverter_Times()
+    return render(request, 'client/inverter.html', {'form': form})
+
+
+def inverter_view(request):
+    try:
+        comp = IData.objects.filter(timestamp=request.GET['timestamp']).values().first()
+    except:
+        comp = IData.objects.values().first()
+    form = Inverter_Form(initial=comp)
+    return render(request, 'client/inverterView.html', {'form':form})
 
 
 def generator_times(request):

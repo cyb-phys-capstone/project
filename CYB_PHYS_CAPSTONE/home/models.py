@@ -7,14 +7,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 # Create your models here.
-
-
-#class CollectsFrom(models.Model):
-#    date = models.DateField(primary_key=True,default=datetime.date.today)
-
-
 class NodeController(models.Model):
-    #id = models.IntegerField(primary_key=True)
     content_type= models.ForeignKey(ContentType,on_delete=models.CASCADE)
     object_id=models.PositiveIntegerField()
     a_id = GenericForeignKey('content_type','object_id')
@@ -23,7 +16,6 @@ class NodeController(models.Model):
 
 
 class Battery(models.Model):
-    #id = models.IntegerField(primary_key=True)
     nc_id = models.ForeignKey('NodeController',on_delete=models.CASCADE)
     manufacturer = models.CharField(max_length=20, default="")
     dimension = ArrayField(ArrayField(ArrayField(models.FloatField(default=0.0)))) #unit: meter
@@ -43,7 +35,6 @@ class Battery(models.Model):
 
 
 class Generator(models.Model):
-    #id = models.IntegerField(primary_key=True)
     nc_id = models.ForeignKey('NodeController', on_delete=models.CASCADE)
     manufacturer = models.CharField(max_length=20, default="")
     dimension = ArrayField(ArrayField(ArrayField(models.FloatField(default=0.0)))) #unit: meter
@@ -65,7 +56,6 @@ class Generator(models.Model):
 
 
 class Inverter(models.Model):
-    #id = models.IntegerField(primary_key=True)
     nc_id = models.ForeignKey('NodeController',on_delete=models.CASCADE)
     manufacturer = models.CharField(max_length=20, default="")
     reactive_power_support = models.BooleanField(default=False)
@@ -99,10 +89,8 @@ class Solar(models.Model):
 
 
 class BData(models.Model):
-    #id = models.IntegerField(primary_key=True)
     b_id = models.ForeignKey('Battery',on_delete=models.CASCADE)
     timestamp = models.DateTimeField(default=datetime.datetime.now)
-#    collected = models.ForeignKey('CollectsFrom',models.CASCADE)
     current_soc = models.FloatField() #unit: %
     current_voltage = models.FloatField() #unit: V
     current_kw = models.FloatField() #unit: kW
@@ -122,10 +110,8 @@ class BData(models.Model):
 
 
 class GData(models.Model):
-    #id = models.IntegerField(primary_key=True)
     g_id = models.ForeignKey('Generator', on_delete=models.CASCADE)
     timestamp = models.DateTimeField(default=datetime.datetime.now)
-#    collected = models.ForeignKey('CollectsFrom', models.CASCADE)
     output_voltage = models.FloatField() #unit: V
     output_current = models.FloatField() #unit: A
     output_real_power1 = models.FloatField() #unit: kW
@@ -136,17 +122,14 @@ class GData(models.Model):
 class SData(models.Model):
     s_id = models.ForeignKey('Solar',on_delete=models.CASCADE)
     timestamp = models.DateTimeField(default=datetime.datetime.now)
-#    collected = models.ForeignKey('CollectsFrom', models.CASCADE)
     output_voltage = models.FloatField() #unit: V
     current = models.FloatField() #unit: A
     real_power = models.FloatField() #unit: KW
 
 
 class IData(models.Model):
-    #id = models.IntegerField(primary_key=True)
     i_id = models.ForeignKey('Inverter',on_delete=models.CASCADE)
     timestamp = models.DateTimeField(default=datetime.datetime.now)
-#    collected = models.ForeignKey('CollectsFrom', models.CASCADE)
     output_voltage = models.FloatField() #unit: kV
     real_power = models.FloatField() #unit: kW
     reactive_power = models.FloatField() #unit: kVAR
@@ -154,11 +137,10 @@ class IData(models.Model):
     input_voltage = models.FloatField() #unit: V
     dc_power = models.FloatField() #unit: kW
     battery_charge_volt = models.FloatField() #unit: V
-    power_factor = models.FloatField #unit: %
+    power_factor = models.FloatField() #unit: %
 
 
 class NREL(models.Model):
-    #id = models.IntegerField(primary_key=True)
     timestamp = models.DateTimeField(default=datetime.datetime.now)
     ghi = models.FloatField(default=0.0)
     dni = models.FloatField(default=0.0)

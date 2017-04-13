@@ -125,4 +125,3 @@ function drawGraph(attribute, graphData, dot) {
     });
     chart.draw(data, options);
 }
-
