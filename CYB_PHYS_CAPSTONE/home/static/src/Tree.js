@@ -17,11 +17,11 @@ function chartBuilder(nodes, generators, inverters, batteries){
             }
         },nodeStructure: {
             text: {
-                name: "EMS-1",
-                title: "ASU-Poly",
-                contact: "Server"
+                name: "Transformer-1",
+                title: "Location : ASU-Poly",
+                contact: "Type : Transformer"
             },
-            image: "/static/assets/server.png",
+            image: "/static/assets/transformer.png",
             HTMLclass: 'light-gray',
             children: []
                 }
@@ -45,7 +45,7 @@ function chartBuilder(nodes, generators, inverters, batteries){
                 var generator_node = { text: {
                     name: generators[device1].pk,
                     manufacturer: "Manufacturer : "+ generators[device1].fields.manufacturer,
-                    contact: "Generator"
+                    contact: "Type : Generator"
                     },
                     link: {
                         href: "http://127.0.0.1:8000/generator/",
@@ -63,13 +63,13 @@ function chartBuilder(nodes, generators, inverters, batteries){
                 var battery_node = { text: {
                     name: batteries[device2].pk,
                     manufacturer: "Manufacturer : "+ batteries[device2].fields.manufacturer,
-                    contact: "Battery"
+                    contact: "Type : Battery"
                     },
                     link: {
                         href: "http://127.0.0.1:8000/battery/",
                         target: "_blank"
                      },
-                    image: "/static/assets/BatteryCharging.png",
+                    image: "/static/assets/battery.png",
                     HTMLclass: 'blue'
                 };
                 childOfEMS.children.push(battery_node);
@@ -81,7 +81,7 @@ function chartBuilder(nodes, generators, inverters, batteries){
                 var inverter_node = { text: {
                     name: inverters[device3].pk,
                     manufacturer: "Manufacturer : "+ inverters[device3].fields.manufacturer,
-                    contact: "Inverter"
+                    contact: "Type : Inverter"
                     },
                     link: {
                         href: "http://127.0.0.1:8000/inverter/",
