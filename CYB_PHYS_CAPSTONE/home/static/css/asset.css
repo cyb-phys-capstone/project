@@ -4,6 +4,11 @@
 
 /* DO NOT EDIT THE FOLLOWING */
 
+a {
+  color: black;
+  font-size: 24px;
+}
+
 body {
     background-color: #eeeeee;
 }
@@ -40,6 +45,14 @@ body {
 p {
     font-size: 24px;
     text-align: center;
+}
+
+.menu_separator {
+    height: 1px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.12);
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 .separator {
