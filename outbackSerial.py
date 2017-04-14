@@ -9,16 +9,9 @@ from ChargeController import ChargeController
 #windows will be something like "COM1"
 #the baud rate should be 19200
 
-if(os.name == 'posix'):
-	try:
-		ser = serial.Serial("/dev/tty.usbmodem1411", 19200)
-	except SerialException:
-		print("Port Unavailable")
-else:
-	try:
-		ser = serial.Seial("/dev/ttyAMA0", 19200)
-	except SerialException:
-		print("Port Unavailable")
+ser = serial.Serial("/dev/tty.usbmodem1421", 19200)
+
+
 
 
 #main loop
@@ -27,20 +20,23 @@ else:
 
 while 1:
 	output =ser.readline()
-	if(output[3]=='5'):
-		deviceType="Inverter"
-		print(output)
-		#inverterData(deviceType, output)
-	elif(output[3]=='3'):
-		deviceType="Charge Controller"
-		cc=ChargeController()
-		cc.chargeControl(array=output,deviceType=deviceType)
-	elif(output[3]=='4'):
-		deviceType="DC Battrey Monitor"
-		#bC= BatteryController()
-		bc= BatteryController()
-		bc.batteryDC(deviceType=deviceType, array=output)
-		#print(output, deviceType)
+	if(len(output)>3):
+		if(output[3]=='5'):
+			deviceType="Inverter"
+			print(output)
+			#inverterData(deviceType, output)
+		if(output[3]=='3'):
+			print(output)
+			deviceType="Charge Controller"
+			cc=ChargeController()
+			cc.chargeControl(array=output,deviceType=deviceType)
+		if(output[3]=='4'):
+			print(output)
+			deviceType="DC Battrey Monitor"
+			#bC= BatteryController()
+			bc= BatteryController()
+			bc.batteryDC(deviceType=deviceType, array=output)
+			#print(output, deviceType)
 
 #this is for testing purposes (do not remove)
 #output = "02,3,00,00,00,037,000,00,02,000,00,483,0000,00,032"
