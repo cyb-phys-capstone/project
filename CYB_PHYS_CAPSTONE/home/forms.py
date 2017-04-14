@@ -15,7 +15,9 @@ class PopulateTree:
         generators = serializers.serialize('json', generators_from_db)
         inverters = serializers.serialize('json', inverters_from_db)
         batteries = serializers.serialize('json', battery_from_db)
-
+        bdata = serializers.serialize('json', b_data_from_db)
+        idata = serializers.serialize('json', i_data_from_db)
+        gdata = serializers.serialize('json', g_data_from_db)
     except:
         print("could not find devices")
 
