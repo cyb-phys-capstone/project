@@ -13,9 +13,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="/static/lib/moment.min.js"></script>
-    <script src="/static/lib/bootstrap-datetimepicker.min.js"></script>
-    <script src="/static/lib/bootstrap-timepicker.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type='text/javascript' src='/static/src/asset_template.js' defer></script>
 
 
@@ -24,10 +21,31 @@
 <body >
     <div class="root">
 
-      <div class="container-fluid">
+        <div class="container-fluid" style="height:100%;overflow:auto;">
+            <div class="col-lg-3" style="height:100%;">
+                <!-- menu -->
+                <div style="height:65%;margin-top:8%;">
+                    <a href="/tree">Map</a><br>
+                    <div class="menu_separator">
+                    </div>
+                    <a href="/battery"><b>Battery</b></a><br>
+                    <div class="menu_separator">
+                    </div>
+                    <a href="/generator">Generator</a><br>
+                    <div class="menu_separator">
+                    </div>
+                    <a href="/inverter">Inverter</a><br>
+                    <div class="menu_separator">
+                    </div>
+                    <a href="/solar">Solar</a><br>
+                    <div class="menu_separator">
+                    </div>
+                    <a href="/nrel">Weather</a><br>
+                </div>
+            </div>
 
         <!-- right column for content -->
-        <div class="col" style="height:100%;">
+            <div class="col-lg-9" style="height:100%;">
 
           <!-- "card" view to hold content -->
           <div class="card">
@@ -40,8 +58,6 @@
                 <p>Device Map</p>
               </div>
 
-              <!-- timestamp dropdown -->
-
               <!-- separator -->
               <div class="separator">
               </div>
@@ -49,19 +65,22 @@
             </div>
 
             <!-- real-time data -->
-            <div class="chart" id="custom-colored"> --@--</div>
+              <div class="chart" id="custom-colored">Tree Loading..</div>
             <script type="text/javascript" src="/static/src/generatorView.js" defer></script>
             <script src="/static/lib/treant/treant-js-master/vendor/raphael.js"></script>
             <script src="/static/lib/treant/treant-js-master/Treant.js"></script>
             <script src="/static/src/Tree.js"></script>
             <script>
                 $('.chart').html('').load(
-                    "{% url 'treeDoodle' %"//?item_num=" + item_num
-                ); // <--- this code instead of $
+                    "{% url 'treeDoodle' %"
+                );
+                var nodes = {{form.nodes | safe}};
                 var generatorObjects = {{form.generators|safe}};
                 var inverterObjects = {{form.inverters|safe}};
                 var batteryObjects = {{form.batteries|safe}};
-                var nodes = {{form.nodes|safe}};
+                var iDataObjects = {{form.idata | safe}};
+                var bDataObjects = {{form.bdata | safe}};
+                var gDataObjects = {{form.gdata | safe}};
                 chartBuilder(nodes, generatorObjects, inverterObjects, batteryObjects);
                 var chart = new Treant(chart_config);
             </script>
