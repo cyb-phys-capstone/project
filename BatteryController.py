@@ -10,13 +10,13 @@ class BatteryController():
 	shuntBKillo = None
 	shuntCKillo = None
 	daysSinceFull = None
-	minSOC = None
-	netInputAH = None
-	netOutputAH = None
-	netInputKWH = None
-	netOutputKWH = None
-	netBatteryAHCF = None
-	netBatteryKWHCF = None
+	minSOC = 0
+	netInputAH = 0
+	netOutputAH = 0
+	netInputKWH = 0
+	netOutputKWH = 0
+	netBatteryAHCF = 0
+	netBatteryKWHCF = 0
 	batteryVoltage = None
 	stateOfCharge = None
 	flagShuntStatusA= None
@@ -44,6 +44,7 @@ class BatteryController():
 		voltage = array[29:32]
 		self.batteryVoltageFunc(voltage=voltage)
 		chargeState = array[33:36]
+		self.stateChargeFunc(chargeState=chargeState)
 
 		enableFlagShuntA = array[37:38]
 		enableFlagShuntB = array[38:39]
@@ -67,31 +68,31 @@ class BatteryController():
 		extraData = "".join(extraDataValues)
 		if(identifier==0):
 			self.shuntAAmpHrs = int(extraData)
-		elif(identifier==1):
+		if(identifier==1):
 			self.shuntAKillo = (Decimal(extraData))/100
-		elif(identifier==2):
+		if(identifier==2):
 			self.shuntBAmpHrs = int(extraData)
-		elif(identifier==3):
+		if(identifier==3):
 			self.shuntBKillo = (Decimal(extraData))/100
-		elif (identifier==4):
+		if (identifier==4):
 			self.shuntCAmpHrs = int(extraData)
-		elif (identifier==5):
+		if (identifier==5):
 			self.shuntCKillo = (Decimal(extraData))/100
-		elif(identifier==6):
+		if(identifier==6):
 			self.daysSinceFull = (Decimal(extraData))/10
-		elif(identifier==7):
+		if(identifier==7):
 			self.minSOC = int(extraData)
-		elif(identifier==8):
+		if(identifier==8):
 			self.netInputAH = int(extraData)
-		elif(identifier==9):
+		if(identifier==9):
 			self.netOutputAH = int(extraData)
-		elif(identifier==10):
+		if(identifier==10):
 			self.netInputKWH = (Decimal(extraData))/100
-		elif(identifier==11):
+		if(identifier==11):
 			self.netOutputKWH = (Decimal(extraData))/100
-		elif(identifier==12):
+		if(identifier==12):
 			self.netBatteryAHCF = int(extraData)
-		elif(identifier==13):
+		if(identifier==13):
 			self.netBatteryKWHCF = (Decimal(extraData))/100
 		else:
 			self.NA = True
