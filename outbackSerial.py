@@ -1,5 +1,5 @@
-# import serial
-# from serial import SerialException
+import serial
+from serial import SerialException
 import datetime
 from ChargeController import ChargeController
 from BatteryController import BatteryController
@@ -7,11 +7,11 @@ import psycopg2
 from random import randint
 
 # Make sure to change this depending on your system, this one is for mac
-# linux will be something like "ttyUSB0"
+# linux will be something like "ttyAMA0/ACM0"
 # windows will be something like "COM1"
 # the baud rate should be 19200
 
-# ser = serial.Serial("/dev/tty.usbmodem1421", 19200)
+ser = serial.Serial("/dev/tty.usbmodem1421", 19200)
 
 dt =datetime.datetime.now()
 chargeID=randint(1, 1000000)
@@ -57,7 +57,7 @@ cursor = conn.cursor()
 
 
 while 1:
-	#output =ser.readline()
+	output =ser.readline()
 	if(len(output)>3):
 		if(output[3]=='5'):
 			deviceType="Inverter"
