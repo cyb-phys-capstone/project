@@ -32,6 +32,6 @@ urlpatterns = [
     url(r'^solar_view',views.solar_view),
     url(r'^NodeTemplate/', views.node_template),
     url(r'^DeviceSelector/', views.device_selector),
-    url(r'^tree/', views.treeDoodle)
-
+    url(r'^tree/', views.treeDoodle),
+    url(r'^$', views.treeDoodle)
 ]
