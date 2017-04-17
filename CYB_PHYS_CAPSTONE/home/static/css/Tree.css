@@ -66,9 +66,19 @@ body {
 }
 .node-model{
     font-size: 15px;
+    padding-left: 3cm;
 }
 
 .node-title{
+    font-size: 15px;
+
+}
+
+.node-frequency{
+    font-size: 15px;
+     padding-left: 3cm;
+}
+.node-voltage{
     font-size: 15px;
 }
 

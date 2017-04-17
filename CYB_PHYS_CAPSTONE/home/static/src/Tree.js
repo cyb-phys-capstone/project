@@ -1,7 +1,9 @@
 
 
 var chart_config = [];
-
+var dynamicDataInverter = [[121.312,120.21,156],[56.12,21.42,43],[321.50, 20, 310.12]];
+var dynamicDataBattery = [[],[],[]];
+var dynamicDataGenerator = [[],[],[]]
 function chartBuilder(nodes, generators, inverters, batteries){
     chart_config = {
         chart: {
@@ -45,7 +47,10 @@ function chartBuilder(nodes, generators, inverters, batteries){
                 var generator_node = { text: {
                     name: generators[device1].pk,
                     manufacturer: "Manufacturer : "+ generators[device1].fields.manufacturer,
-                    contact: "Type : Generator"
+                    contact: "Type : Generator",
+                    title: "Output Volts: " + dynamicDataInverter[randomNumber()][randomNumber()],
+                    model: "Input Volts: " + dynamicDataInverter[randomNumber()][randomNumber()],
+                    frequency: "Frequency : " + dynamicDataInverter[randomNumber()][randomNumber()]
                     },
                     link: {
                         href: "http://127.0.0.1:8000/generator/",
@@ -63,7 +68,10 @@ function chartBuilder(nodes, generators, inverters, batteries){
                 var battery_node = { text: {
                     name: batteries[device2].pk,
                     manufacturer: "Manufacturer : "+ batteries[device2].fields.manufacturer,
-                    contact: "Type : Battery"
+                    contact: "Type : Battery",
+                    title: "Output Volts: " + dynamicDataInverter[randomNumber()][randomNumber()],
+                    model: "Input Volts: " + dynamicDataInverter[randomNumber()][randomNumber()],
+                    frequency: "Frequency : " + dynamicDataInverter[randomNumber()][randomNumber()]
                     },
                     link: {
                         href: "http://127.0.0.1:8000/battery/",
@@ -81,7 +89,10 @@ function chartBuilder(nodes, generators, inverters, batteries){
                 var inverter_node = { text: {
                     name: inverters[device3].pk,
                     manufacturer: "Manufacturer : "+ inverters[device3].fields.manufacturer,
-                    contact: "Type : Inverter"
+                    contact: "Type : Inverter",
+                    title: "Output Volts: " + dynamicDataInverter[randomNumber()][randomNumber()],
+                    model: "Input Volts: " + dynamicDataInverter[randomNumber()][randomNumber()],
+                    frequency: "Frequency : " + dynamicDataInverter[randomNumber()][randomNumber()]
                     },
                     link: {
                         href: "http://127.0.0.1:8000/inverter/",
@@ -97,3 +108,13 @@ function chartBuilder(nodes, generators, inverters, batteries){
     }
 
 }
+var i=0;
+function hello() {
+    i++;
+    console.log(i);
+}
+
+function randomNumber() {
+    return Math.floor((Math.random() * 3));
+}
+

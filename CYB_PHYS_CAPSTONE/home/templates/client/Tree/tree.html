@@ -78,11 +78,13 @@
                 var generatorObjects = {{form.generators|safe}};
                 var inverterObjects = {{form.inverters|safe}};
                 var batteryObjects = {{form.batteries|safe}};
-                var iDataObjects = {{form.idata | safe}};
-                var bDataObjects = {{form.bdata | safe}};
-                var gDataObjects = {{form.gdata | safe}};
+
                 chartBuilder(nodes, generatorObjects, inverterObjects, batteryObjects);
                 var chart = new Treant(chart_config);
+                setInterval(function(){
+                    chartBuilder(nodes, generatorObjects, inverterObjects, batteryObjects);
+                    chart = new Treant(chart_config);
+                }, 8000);
             </script>
           </div>
 
