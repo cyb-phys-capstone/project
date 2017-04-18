@@ -1,5 +1,6 @@
 from django.shortcuts import render, render_to_response, get_object_or_404
 from home.forms import *
+<<<<<<< HEAD
 from home.models import NREL, NodeController, Battery, BData, Generator, Inverter, IData, Solar, SData
 
 
@@ -14,6 +15,21 @@ def nrel_view(request):
         comp = NREL.objects.filter(timestamp=request.GET['timestamp']).values().first()
     except:
         comp = NREL.objects.values().first()
+=======
+from home.models import NREL, NodeController, Battery, Generator, Inverter
+
+# Create your views here.
+def index(request):
+    form = NREL_Times()
+    return render(request, 'client/NREL.html', {'form': form})
+
+
+def nrel(request):
+    try:
+        comp = NREL.objects.filter(timestamp=request.GET['timestamp']).values()[0]
+    except:
+        comp = NREL.objects.values()[0]
+>>>>>>> 6ceca417e573e6689a17f92f700e67a516c9652b
     form = NREL_Form(initial=comp)
     return render(request, 'client/nrelView.html', {'form': form})
 
@@ -95,6 +111,26 @@ def treeDoodle(request):
                   }
                   )
 
+<<<<<<< HEAD
+=======
+
+def battery_data(request):
+    return render(request, 'client/DeviceInfo/BatteryTemplate.html')
+
+
+def generator_template(request):
+    return render(request, 'client/DeviceInfo/GeneratorTemplate.html')
+
+
+def inverter_template(request):
+    return render(request, 'client/DeviceInfo/InverterTemplate.html')
+
+
+def node_template(request):
+    return render(request, 'client/DeviceInfo/NodeTemplate.html')
+
+
+>>>>>>> 6ceca417e573e6689a17f92f700e67a516c9652b
 def device_selector(request):
     nodes = NodeController.objects.all()
     generators = Generator.objects.all()
@@ -106,7 +142,14 @@ def device_selector(request):
                     'generatorHTML': generators,
                     'invertersHTML': inverters,
                     'batteriesHTML': batteries,
+<<<<<<< HEAD
                     'solarHTML':solars,
                     'button': ' <button type="button">Click Me!</button> '
                    }
                   )
+=======
+                    'button': ' <button type="button">Click Me!</button> '
+                   }
+                  )
+
+>>>>>>> 6ceca417e573e6689a17f92f700e67a516c9652b

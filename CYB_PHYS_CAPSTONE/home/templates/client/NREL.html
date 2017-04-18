@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NREL</title>
+    <script type="text/javascript">
+        var data_NREL = {{form.queryset2|safe}};
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+     <script src="/static/lib/moment.min.js"></script>
+    <script src="/static/lib/bootstrap-datetimepicker.min.js"></script>
+    <script src="/static/lib/bootstrap-timepicker.min.js"></script>
+    <script src="/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script defer type='text/javascript' src='/static/src/NREL_viewer.js'></script>
+    <link rel="stylesheet" href="/static/css/nrel.css">
+    <link rel="stylesheet" href="/static/lib/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/static/lib/bootstrap-timepicker.min.css">
+</head>
+
+<body class="container">
+
+    <div id="calendar_ham" class="col-lg-4">
+        <div style="overflow:hidden;">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="datetimepicker12"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="NREL_master_viewer" class="col-lg-8">
+        <div id="time_select" onchange="selectTime();">
+            Date, Time Select:
+            {{form.timeStamps}}
+        </div>
+
+        <br/>
+        <div id="NREL_data_viewer">
+
+        </div>
+
+        <div id="NREL_Graph" onchange="getGraphData()">
+            <select id="data_select">
+                <option>GHI</option>
+                <option>DNI</option>
+                <option>DHI</option>
+                <option>Air Temp.</option>
+                <option>Rel. Humid</option>
+                <option>Wind Speed</option>
+                <option>Wind Dir.</option>
+                <option>Station Pressure</option>
+            </select>
+            <!-- Insert google graph here -->
+            <div id="google_graph"></div>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,5 +1,9 @@
 from django import forms
+<<<<<<< HEAD
 from home.models import NREL, NodeController, BData, GData, Generator, Inverter, IData, Battery, SData
+=======
+from home.models import NREL, NodeController
+>>>>>>> 6ceca417e573e6689a17f92f700e67a516c9652b
 from django.core import serializers
 
 class PopulateTree:
@@ -31,6 +35,17 @@ class Generator_Times(forms.Form):
 
 class Generator_Form(forms.ModelForm):
 
+<<<<<<< HEAD
+=======
+class NREL_Times(forms.Form):
+    timeStamps = forms.ModelChoiceField(queryset=NREL.objects.datetimes('timestamp', 'second'), widget=forms.Select, empty_label=None)
+    queryset = NREL.objects.all()
+    queryset2 = serializers.serialize('json', queryset)
+
+
+class NREL_Form(forms.ModelForm):
+
+>>>>>>> 6ceca417e573e6689a17f92f700e67a516c9652b
     class Meta:
         model = GData
         fields = ('timestamp','voltage','current','real_power_kw','real_power_kvar','frequency')
@@ -67,6 +82,7 @@ class Battery_Form(forms.ModelForm):
 
     # Attributes
     timestamp = forms.CharField(label='Timestamp', max_length=50,
+<<<<<<< HEAD
                           widget=forms.TextInput(attrs={'class': 'battery-attr', 'name':'Battery_timestamp'}))
     current_soc = forms.CharField(label='SOC (%)', max_length=30,
                           widget=forms.TextInput(attrs={'class': 'battery-attr', 'name':'Battery_soc'}))
@@ -133,14 +149,33 @@ class NREL_Times(forms.Form):
         queryset2 = serializers.serialize('json', queryset)
     except:
         print("Can't get NRELs")
+=======
+                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_timestamp'}))
+    ghi = forms.CharField(label='GHI', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_ghi'}))
+    dni = forms.CharField(label='DNI', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_dni'}))
+    dhi = forms.CharField(label='DHI', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_dhi'}))
+    air_temp = forms.CharField(label='Air Temp', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_air_temp'}))
+    rel_humid = forms.CharField(label='Rel. Humid', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_rel_humid'}))
+    wind_speed = forms.CharField(label='Wind Speed', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_wind_speed'}))
+    wind_dir = forms.CharField(label='Wind Dir', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_wind_dir'}))
+    station_pressure = forms.CharField(label='Station Pressure', max_length=30,
+                          widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name':'Nrel_station_pressure'}))
+>>>>>>> 6ceca417e573e6689a17f92f700e67a516c9652b
 
 
-class NREL_Form(forms.ModelForm):
+class GetNodes(forms.Form):
+    queryset = NodeController.objects.all()
+    queryset2 = serializers.serialize('json', queryset)
 
-    class Meta:
-        model = NREL
-        fields = ('timestamp', 'ghi', 'dni', 'air_temp', 'rel_humid', 'wind_speed', 'wind_dir', 'station_pressure')
 
+<<<<<<< HEAD
     # Attributes
     timestamp = forms.CharField(label='Timestamp', max_length=50,
                           widget=forms.TextInput(attrs={'class': 'asset-attr', 'name':'Nrel_timestamp'}))
@@ -169,6 +204,8 @@ class GetNodes(forms.Form):
     except:
         print("Can't get NodeControllers")
 
+=======
+>>>>>>> 6ceca417e573e6689a17f92f700e67a516c9652b
 
 # class BatteryForm(forms.ModelForm):
 #     class Meta:
@@ -210,4 +247,8 @@ class GetNodes(forms.Form):
 #     wind_dir = forms.CharField(label='Max Charging Rate', max_length=30,
 #                           widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name': 'Nrel_max_charging_rate'}))
 #     station_pressure = forms.CharField(label='Max Discharing Rate', max_length=30,
+<<<<<<< HEAD
 #                           widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name': 'Nrel_charging_efficiency'}))
+=======
+#                           widget=forms.TextInput(attrs={'class': 'nrel-attr', 'name': 'Nrel_charging_efficiency'}))
+>>>>>>> 6ceca417e573e6689a17f92f700e67a516c9652b

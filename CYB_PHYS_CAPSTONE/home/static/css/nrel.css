@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 /*
+=======
+>>>>>>> 6ceca417e573e6689a17f92f700e67a516c9652b
 body {
     background-color: #E3E3E3;
 }
@@ -34,6 +37,7 @@ div, label {
     margin-top: 15%;
     font-size: 150%;
 }
+<<<<<<< HEAD
 */
 .nrel-container {
     display: inline-block;
@@ -41,6 +45,15 @@ div, label {
     font-size: 18px;
 }
 /*
+=======
+
+.nrel-container {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 5%;
+}
+
+>>>>>>> 6ceca417e573e6689a17f92f700e67a516c9652b
 #hiddenData {
     display: none;
 }
@@ -48,4 +61,7 @@ div, label {
 div.timepicker {
     display: none;
 }
+<<<<<<< HEAD
 */
+=======
+>>>>>>> 6ceca417e573e6689a17f92f700e67a516c9652b
