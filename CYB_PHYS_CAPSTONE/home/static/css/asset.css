@@ -1,0 +1,79 @@
+/* ADD CUSTOM STYLES HERE */
+
+
+
+/* DO NOT EDIT THE FOLLOWING */
+
+a {
+  color: black;
+  font-size: 24px;
+}
+
+body {
+    background-color: #eeeeee;
+}
+
+.root {
+    position: absolute;
+    padding: 1em;
+
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
+.card {
+    background-color: white;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.40);
+    width: 96%;
+    height: 96%;
+    border-radius: 2px;
+    position: absolute;
+    margin: auto;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.header {
+  height:7%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+p {
+    font-size: 24px;
+    text-align: center;
+}
+
+.menu_separator {
+    height: 1px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.12);
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.separator {
+    height: 1px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.12);
+    position: absolute;
+    bottom: 0;
+}
+
+.content {
+  height:43%;
+  position: relative;
+}
+
+div.timepicker {
+    display: none;
+}
+
+.calendar-center {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}

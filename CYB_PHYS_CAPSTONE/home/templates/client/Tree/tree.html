@@ -1,0 +1,97 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="/static/lib/treant/treant-js-master/Treant.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/Tree.css">
+
+    <link rel="stylesheet" href="/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/asset.css">
+    <link rel="stylesheet" href="/static/lib/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/static/lib/bootstrap-timepicker.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="/static/lib/moment.min.js"></script>
+    <script type='text/javascript' src='/static/src/asset_template.js' defer></script>
+
+
+    <title> Device Map </title>
+</head>
+<body >
+    <div class="root">
+
+        <div class="container-fluid" style="height:100%;overflow:auto;">
+            <div class="col-lg-3" style="height:100%;">
+                <!-- menu -->
+                <div style="height:65%;margin-top:8%;">
+                    <a href="/tree"><b>Map</b></a><br>
+                    <div class="menu_separator">
+                    </div>
+                    <a href="/battery">Battery</a><br>
+                    <div class="menu_separator">
+                    </div>
+                    <a href="/generator">Generator</a><br>
+                    <div class="menu_separator">
+                    </div>
+                    <a href="/inverter">Inverter</a><br>
+                    <div class="menu_separator">
+                    </div>
+                    <a href="/solar">Solar</a><br>
+                    <div class="menu_separator">
+                    </div>
+                    <a href="/nrel">Weather</a><br>
+                </div>
+            </div>
+
+        <!-- right column for content -->
+            <div class="col-lg-9" style="height:100%;">
+
+          <!-- "card" view to hold content -->
+          <div class="card">
+
+            <!-- header -->
+            <div class="header row-fluid">
+
+              <!-- title -->
+              <div class="col-lg-3">
+                <p>Device Map</p>
+              </div>
+
+              <!-- separator -->
+              <div class="separator">
+              </div>
+
+            </div>
+
+            <!-- real-time data -->
+              <div class="chart" id="custom-colored">Tree Loading..</div>
+            <script type="text/javascript" src="/static/src/generatorView.js" defer></script>
+            <script src="/static/lib/treant/treant-js-master/vendor/raphael.js"></script>
+            <script src="/static/lib/treant/treant-js-master/Treant.js"></script>
+            <script src="/static/src/Tree.js"></script>
+            <script>
+                $('.chart').html('').load(
+                    "{% url 'treeDoodle' %"
+                );
+                var nodes = {{form.nodes | safe}};
+                var generatorObjects = {{form.generators|safe}};
+                var inverterObjects = {{form.inverters|safe}};
+                var batteryObjects = {{form.batteries|safe}};
+
+                chartBuilder(nodes, generatorObjects, inverterObjects, batteryObjects);
+                var chart = new Treant(chart_config);
+                setInterval(function(){
+                    chartBuilder(nodes, generatorObjects, inverterObjects, batteryObjects);
+                    chart = new Treant(chart_config);
+                }, 8000);
+            </script>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+</body>
+</html>

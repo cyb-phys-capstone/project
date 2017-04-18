@@ -1,0 +1,35 @@
+<div id="real_time_data" style="overflow-y:auto;">
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+              <div class="col-lg-4">
+                {{form.voltage.label_tag}}
+                <br/>
+                {{form.voltage}}
+              </div>
+              <div class="col-lg-4">
+                {{form.current.label_tag}}
+                <br/>
+                {{form.current}}
+              </div>
+              <div class="col-lg-4">
+                {{form.real_power_kw.label_tag}}
+                <br/>
+                {{form.real_power_kw}}
+              </div>
+            </div>
+
+            <div class="row-fluid">
+              <div class="col-lg-4">
+                {{form.real_power_kvar.label_tag}}
+                <br/>
+                {{form.real_power_kvar}}
+              </div>
+              <div class="col-lg-4">
+                {{form.frequency.label_tag}}
+                <br/>
+                {{form.frequency}}
+              </div>
+            </div>
+        </div>
+</div>

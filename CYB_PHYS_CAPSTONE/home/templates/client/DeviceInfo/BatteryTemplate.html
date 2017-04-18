@@ -3,13 +3,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Cyber-Physical ASU</title>
+    <title>Battery</title>
     <meta charset="UTF-8">
 
     <!-- Bootstrap Import -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> <!-- Latest compiled and minified CSS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> <!-- jQuery library -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><!-- Latest compiled JavaScript -->
+
+    <script defer type='text/javascript' src='/CYB_PHYS_CAPSTONE/home/static/src/DeviceDataPopulate.js'></script>
+
 </head>
 <nav class ="navbar navbar-default">
     <div class = "contianer-fluid">
@@ -29,38 +32,47 @@
 <body>
     <div style="background-color: aliceblue">
         <div class="container">
-            <h2><b>Device Information</b></h2>
+            <h2><b>Asset Information</b></h2>
             <div class="row">
                 <div class="col-md-4" >
-                    <h4>Device ID:</h4> 000000000
+                    <h4>Asset ID:</h4>
+                    <p id="assetNum">000000000</p>
                 </div>
                 <div class="col-md-4" >
-                    <h4>Node Controller:</h4> 000000000
+                    <h4>Node Controller:</h4>
+                    <p id="nodeName">000000000</p>
                 </div>
                 <div class="col-md-4" >
-                    <h4>Manufacturer:</h4> 000000000
+                    <h4>Manufacturer:</h4>
+                    <p id="manufacturer">000000000</p>
                 </div>
             </div>
             <div class ="row">
                 <div class="col-md-4" >
-                    <h4>Model:</h4> 000000000
+                    <h4>Model:</h4>
+                    <p id="model">000000000</p>
                 </div>
                 <div class="col-md-4" >
-                    <h4>Weight:</h4> 000000000
+                    <h4>Weight:</h4>
+                    <p id="weight">000000000</p>
                 </div>
                 <div class="col-md-4" >
-                    <h4>Dimension:</h4> 000000000
+                    <h4>Dimension:</h4>
+                    <p id="dimension">000000000</p>
                 </div>
             </div>
             <div class = "row">
                 <div class="col-md-4" >
-                    <h4>Resistance:</h4> 000000000
+                    <h4>Resistance:</h4>
+                    <p id="resistance">000000000</p>
                 </div>
                 <div class="col-md-4" >
-                    <h4>Max Voltage:</h4> 000000000
+                    <h4>Max Voltage:</h4>
+                    <p id="voltageMax">000000000</p>
                 </div>
                 <div class="col-md-4" >
-                    <h4>Max Current:</h4> 000000000
+                    <h4>Max Current:</h4>
+                    <p id="currentMax">000000000</p>
                 </div>
             </div>
         </div>
@@ -72,6 +84,7 @@
             <div class="col-md-6">
                 <div class="row" >
                     <h4>Output State:</h4> Yes/no
+
                 </div>
                 <div class="row" >
                     <h4>Discharge Rate:</h4> 000000000
@@ -83,13 +96,13 @@
         </div>
         <div class="container">
             <div class="col-md-4" >
-                <h2><b>Device Control</b></h2>
-                <button type = "button" class = "btn btn-default btn-lg btn-block">Change Device State</button>
+                <h2><b>Control</b></h2>
+                <button type="button" class="btn btn-default btn-lg btn-block">Change Asset State</button>
                 <button type = "button" class = "btn btn-default btn-lg btn-block">Shutdown</button>
                 <button type = "button" class = "btn btn-default btn-lg btn-block">Update</button>
             </div>
             <div class="col-md-4" >
-                <h2><b>Device Error Log</b></h2>
+                <h2><b>Error Log</b></h2>
                 <div class="panel panel-body" style="overflow-y: scroll">
 
                 </div>

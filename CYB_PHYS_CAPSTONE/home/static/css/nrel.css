@@ -1,0 +1,51 @@
+/*
+body {
+    background-color: #E3E3E3;
+}
+
+select, input {
+    color: black;
+}
+
+div, label {
+    color: black;
+}
+
+#NREL_master_viewer {
+    margin-top: 10%;
+}
+
+#time_select {
+    position: absolute;
+    right: 0%;
+    font-size: 200%;
+}
+
+#data_select {
+    margin-bottom: 10px;
+    font-size: 200%;
+}
+
+#google_graph {
+    position: relative;
+}
+
+#NREL_data_viewer {
+    margin-top: 15%;
+    font-size: 150%;
+}
+*/
+.nrel-container {
+    display: inline-block;
+    margin-bottom: 5%;
+    font-size: 18px;
+}
+/*
+#hiddenData {
+    display: none;
+}
+
+div.timepicker {
+    display: none;
+}
+*/

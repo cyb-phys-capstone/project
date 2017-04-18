@@ -19,7 +19,19 @@ from home import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^NREL/', views.index),
-    url(r'^NREL_view/', views.nrel),
-    url(r'^DeviceData/', views.DeviceData)
+    url(r'^asset_template/', views.asset_template),
+    url(r'^nrel/', views.nrel_times),
+    url(r'^nrel_view/', views.nrel_view),
+    url(r'^battery/', views.battery_times),
+    url(r'^battery_view/', views.battery_view),
+    url(r'^generator/',views.generator_times),
+    url(r'^generator_view/', views.generator_view),
+    url(r'^inverter/', views.inverter_times),
+    url(r'^inverter_view/', views.inverter_view),
+    url(r'^solar/', views.solar_times),
+    url(r'^solar_view',views.solar_view),
+    url(r'^NodeTemplate/', views.node_template),
+    url(r'^DeviceSelector/', views.device_selector),
+    url(r'^tree/', views.treeDoodle),
+    url(r'^$', views.treeDoodle)
 ]
