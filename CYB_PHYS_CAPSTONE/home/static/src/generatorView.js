@@ -37,7 +37,7 @@ function getDataId (name) {
 
 function drawGraphDefault () {
     var graphData = [];
-    var attribute = "voltage";
+    var attribute = "output_voltage";
     var row = 0;
 
 

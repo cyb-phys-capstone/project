@@ -39,14 +39,14 @@ class Generator_Form(forms.ModelForm):
     timestamp = forms.CharField(label='Timestamp',max_length=50,
                         widget=forms.TextInput(attrs={'class':'generator-attr','name':'Generator_timestamp'}))
     output_voltage = forms.CharField(label='Voltage (V)',max_length=30,
-                        widget=forms.TextInput(attrs={'class':'generator-attr','name':'Generator_voltage'}))
+                        widget=forms.TextInput(attrs={'class':'generator-attr','name':'Generator_output_voltage'}))
     output_current = forms.CharField(label='Current (A)',max_length=30,
-                        widget=forms.TextInput(attrs={'class':'generator-attr','name':'Generator_current'}))
+                        widget=forms.TextInput(attrs={'class':'generator-attr','name':'Generator_output_current'}))
     output_real_power1 = forms.CharField(label='Real Power (kW)', max_length=30,
-                        widget=forms.TextInput(attrs={'class':'generator-attr', 'name':'Generator_real_power_kw'}))
+                        widget=forms.TextInput(attrs={'class':'generator-attr', 'name':'Generator_output_real_power1'}))
     output_real_power2 = forms.CharField(label='Real Power (kVAR)', max_length=30,
                                     widget=forms.TextInput(
-                                        attrs={'class': 'generator-attr', 'name': 'Generator_real_power_kvar'}))
+                                        attrs={'class': 'generator-attr', 'name': 'Generator_output_real_power2'}))
     frequency = forms.CharField(label='Frequency (Hz)', max_length=30,
                                     widget=forms.TextInput(
                                         attrs={'class': 'generator-attr', 'name': 'Generator_frequency'}))
@@ -116,15 +116,15 @@ class Solar_Times(forms.Form):
 class Solar_Form(forms.ModelForm):
     class Meta:
         model=SData
-        fields=('timestamp','voltage','current', 'real_power_kw')
+        fields=('timestamp','output_voltage','current', 'real_power')
 
     #Attributes
-    voltage = forms.CharField(label='Voltage (V)', max_length=30,
-                             widget=forms.TextInput(attrs={'class':'solar-attr','name':'Solar_voltage'}))
+    output_voltage = forms.CharField(label='Voltage (V)', max_length=30,
+                             widget=forms.TextInput(attrs={'class':'solar-attr','name':'Solar_output_voltage'}))
     current = forms.CharField(label='Current (A)',max_length=30,
                         widget=forms.TextInput(attrs={'class':'solar-attr','name':'Solar_current'}))
-    real_power_kw = forms.CharField(label='Real Power (kW)', max_length=30,
-                        widget=forms.TextInput(attrs={'class':'solar-attr', 'name':'Solar_real_power_kw'}))
+    real_power = forms.CharField(label='Real Power (kW)', max_length=30,
+                        widget=forms.TextInput(attrs={'class':'solar-attr', 'name':'Solar_real_power'}))
 
 class NREL_Times(forms.Form):
     timeStamps = forms.ModelChoiceField(queryset=NREL.objects.datetimes('timestamp', 'second'), widget=forms.Select, empty_label=None)
