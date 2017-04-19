@@ -33,18 +33,18 @@ class Generator_Form(forms.ModelForm):
 
     class Meta:
         model = GData
-        fields = ('timestamp','voltage','current','real_power_kw','real_power_kvar','frequency')
+        fields = ('timestamp','output_voltage','output_current','output_real_power1','output_real_power2','frequency')
 
     #Attributes
     timestamp = forms.CharField(label='Timestamp',max_length=50,
                         widget=forms.TextInput(attrs={'class':'generator-attr','name':'Generator_timestamp'}))
-    voltage = forms.CharField(label='Voltage (V)',max_length=30,
+    output_voltage = forms.CharField(label='Voltage (V)',max_length=30,
                         widget=forms.TextInput(attrs={'class':'generator-attr','name':'Generator_voltage'}))
-    current = forms.CharField(label='Current (A)',max_length=30,
+    output_current = forms.CharField(label='Current (A)',max_length=30,
                         widget=forms.TextInput(attrs={'class':'generator-attr','name':'Generator_current'}))
-    real_power_kw = forms.CharField(label='Real Power (kW)', max_length=30,
+    output_real_power1 = forms.CharField(label='Real Power (kW)', max_length=30,
                         widget=forms.TextInput(attrs={'class':'generator-attr', 'name':'Generator_real_power_kw'}))
-    real_power_kvar = forms.CharField(label='Real Power (kVAR)', max_length=30,
+    output_real_power2 = forms.CharField(label='Real Power (kVAR)', max_length=30,
                                     widget=forms.TextInput(
                                         attrs={'class': 'generator-attr', 'name': 'Generator_real_power_kvar'}))
     frequency = forms.CharField(label='Frequency (Hz)', max_length=30,
