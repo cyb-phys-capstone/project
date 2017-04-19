@@ -14,13 +14,13 @@ function getDataId (name) {
 
     switch (name) {
       case "Voltage":
-        dataId = "voltage";
+        dataId = "output_voltage";
         break;
       case "Current":
         dataId = "current";
         break;
       case "Real Power(kW)":
-        dataId = "real_power_kw";
+        dataId = "real_power";
         break;
     }
 
@@ -29,7 +29,7 @@ function getDataId (name) {
 
 function drawGraphDefault () {
     var graphData = [];
-    var attribute = "voltage";
+    var attribute = "output_voltage";
     var row = 0;
 
 
