@@ -14,16 +14,16 @@ function getDataId (name) {
 
     switch (name) {
       case "Voltage":
-        dataId = "voltage";
+        dataId = "output_voltage";
         break;
       case "Current":
-        dataId = "current";
+        dataId = "output_current";
         break;
       case "Real Power(kW)":
-        dataId = "real_power_kw";
+        dataId = "output_real_power1";
         break;
       case "Real Power(kVAR)":
-        dataId = "real_power_kvar";
+        dataId = "output_real_power2";
         break;
       case "Frequency":
         dataId = "frequency";
