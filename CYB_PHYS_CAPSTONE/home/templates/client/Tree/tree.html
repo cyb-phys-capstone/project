@@ -95,11 +95,11 @@
 
                 /*setTimeout function for testing purposes, will execture after 4 seconds of page loading*/
                 //HERE
-                    var batteryObjectsArray = assetObjectToJsonArray(batteryObjects);
-                    var inverterObjectsArray = assetObjectToJsonArray(inverterObjects);
+                    var batteryAssetsArray = assetObjectToJsonArray(batteryObjects);
+                    var inverterAssetsArray = assetObjectToJsonArray(inverterObjects);
                     var generatorAssetsArray = assetObjectToJsonArray(generatorObjects);
-
-                    var allQueriesArray = batteryObjectsArray.concat(inverterObjectsArray,generatorAssetsArray)
+                    var nodeAssetsArray = assetObjectToJsonArray(nodes)
+                    var allQueriesArray = batteryAssetsArray.concat(inverterAssetsArray,generatorAssetsArray,nodeAssetsArray)
 
                     var queryStringRequest = "?" //add all quieries to this string, send to server
                     for(var position in allQueriesArray){
