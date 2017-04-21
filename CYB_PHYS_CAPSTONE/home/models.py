@@ -18,6 +18,7 @@ class NodeController(models.Model):
 class Battery(models.Model):
     nc_id = models.ForeignKey('NodeController',on_delete=models.CASCADE)
     manufacturer = models.CharField(max_length=20, default="")
+    model = models.CharField(max_length=20, default="")
     dimension = ArrayField(ArrayField(ArrayField(models.FloatField(default=0.0)))) #unit: meter
     weight = models.FloatField(default=0.0) #unit: kg
     R = models.FloatField(default=0.0) #unit: %
@@ -37,6 +38,7 @@ class Battery(models.Model):
 class Generator(models.Model):
     nc_id = models.ForeignKey('NodeController', on_delete=models.CASCADE)
     manufacturer = models.CharField(max_length=20, default="")
+    model = models.CharField(max_length=20, default="")
     dimension = ArrayField(ArrayField(ArrayField(models.FloatField(default=0.0)))) #unit: meter
     weight = models.FloatField(default=0.0) #unit: kg
     fuel_type = models.CharField(max_length=15, default="")
@@ -58,6 +60,7 @@ class Generator(models.Model):
 class Inverter(models.Model):
     nc_id = models.ForeignKey('NodeController',on_delete=models.CASCADE)
     manufacturer = models.CharField(max_length=20, default="")
+    model = models.CharField(max_length=20, default="")
     reactive_power_support = models.BooleanField(default=False)
     battery_charging_support = models.BooleanField(default=False)
     communication_protocol = models.CharField(default="",max_length=10)
@@ -79,6 +82,7 @@ class Inverter(models.Model):
 class Solar(models.Model):
     nc_id = models.ForeignKey('NodeController',on_delete=models.CASCADE)
     manufacturer = models.CharField(max_length=20, default="")
+    model = models.CharField(max_length=20, default="")
     dimension = ArrayField(ArrayField(ArrayField(models.FloatField(default=0.0)))) # unit: meter
     weight = models.FloatField(default=0.0) #unit:kg
     short_circuit_current = models.FloatField(default=5.0) #unit: A

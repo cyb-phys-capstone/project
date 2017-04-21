@@ -108,13 +108,35 @@ function chartBuilder(nodes, generators, inverters, batteries){
     }
 
 }
-var i=0;
-function hello() {
-    i++;
-    console.log(i);
-}
 
+/*
+parseAssetsArrayToJson converts objects query strings
+ */
+function assetObjectToJsonArray(assetObject){
+    var assetArray=[];
+                for(var position in assetObject){
+                    var jsonObject = JSON.parse(`{"id":${assetObject[position].pk},"model":"${assetObject[position].model}"}`);
+                    var assetQueryString = jQuery.param(jsonObject)
+                    assetArray.push(assetQueryString)
+                }
+    return assetArray;
+}
 function randomNumber() {
     return Math.floor((Math.random() * 3));
 }
+function updateDeviceMapAssets(queryString){
+    var httpRequest = new XMLHttpRequest();
+    httpRequest.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     console.log( this.responseText);
+     //I have the query,
+     //getElementsBy class name? in html page, replace data, match ID & assetType in serverResponse
+    }
+  };
+    console.log("sending query");
+  httpRequest.open("GET", "deviceMapData"+queryString, true); // method, url+queryString, asynchronous
+  httpRequest.send();
+
+}
+
 

@@ -13,7 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="/static/lib/moment.min.js"></script>
-    <script type='text/javascript' src='/static/src/asset_template.js' defer></script>
+    <!---<script type='text/javascript' src='/static/src/asset_template.js' defer></script>-->
 
 
     <title> Device Map </title>
@@ -75,9 +75,14 @@
                     "{% url 'treeDoodle' %"
                 );
                 var nodes = {{form.nodes | safe}};
+                //console.log(nodes)
                 var generatorObjects = {{form.generators|safe}};
+                //console.log(generatorObjects)
                 var inverterObjects = {{form.inverters|safe}};
+                //console.log(inverterObjects)
                 var batteryObjects = {{form.batteries|safe}};
+                //console.log(batteryObjects);
+
 
                 chartBuilder(nodes, generatorObjects, inverterObjects, batteryObjects);
                 var chart = new Treant(chart_config);
@@ -85,6 +90,33 @@
                     chartBuilder(nodes, generatorObjects, inverterObjects, batteryObjects);
                     chart = new Treant(chart_config);
                 }, 8000);
+
+
+
+                /*setTimeout function for testing purposes, will execture after 4 seconds of page loading*/
+                //HERE
+                    var batteryObjectsArray = assetObjectToJsonArray(batteryObjects);
+                    var inverterObjectsArray = assetObjectToJsonArray(inverterObjects);
+                    var generatorAssetsArray = assetObjectToJsonArray(generatorObjects);
+
+                    var allQueriesArray = batteryObjectsArray.concat(inverterObjectsArray,generatorAssetsArray)
+
+                    var queryStringRequest = "?" //add all quieries to this string, send to server
+                    for(var position in allQueriesArray){
+                        //console.log(allQueriesArray[position])
+                        queryStringRequest+=allQueriesArray[position]+"&"
+                    }
+                    queryStringRequest+="length="+allQueriesArray.length
+                    console.log(queryStringRequest)
+                //HERE
+                /*uncomment below to send query to server, prints response in console. TODO: server side needs work for request*/
+                //setTimeout(updateDeviceMapAssets(queryStringRequest), 4000);
+
+                /*when completed testing updateDeviceMapAssets, add HERE to HERE to repeating setInterval function below */
+                // setInterval(function(){
+              //      updateDeviceMapAssets(queryStringRequest);
+              //  }, 3000);
+
             </script>
           </div>
 
