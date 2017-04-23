@@ -60,23 +60,26 @@ body {
 .node-manufacturer{
     font-size: 15px;
  }
-
+.node-seperator{
+    font-size:15px;
+    text-align: right;
+}
 .node-contact{
     font-size: 15px;
 }
 .node-model{
     font-size: 15px;
-    padding-left: 3cm;
+    text-align: center;
 }
 
 .node-title{
     font-size: 15px;
-
+    text-align: center;
 }
 
 .node-frequency{
     font-size: 15px;
-     padding-left: 3cm;
+    text-align: center;
 }
 .node-voltage{
     font-size: 15px;
