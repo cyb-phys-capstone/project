@@ -71,9 +71,6 @@
             <script src="/static/lib/treant/treant-js-master/Treant.js"></script>
             <script src="/static/src/Tree.js"></script>
             <script>
-                $('.chart').html('').load(
-                    "{% url 'treeDoodle' %"
-                );
                 var nodes = {{form.nodes | safe}};
                 //console.log(nodes)
                 var generatorObjects = {{form.generators|safe}};

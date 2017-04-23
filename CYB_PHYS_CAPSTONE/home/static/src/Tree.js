@@ -2,8 +2,7 @@
 
 var chart_config = [];
 var dynamicDataInverter = [[121.312,120.21,156],[56.12,21.42,43],[321.50, 20, 310.12]];
-var dynamicDataBattery = [[],[],[]];
-var dynamicDataGenerator = [[],[],[]]
+
 function chartBuilder(nodes, generators, inverters, batteries){
     chart_config = {
         chart: {
@@ -33,7 +32,7 @@ function chartBuilder(nodes, generators, inverters, batteries){
             name: nodes[i].fields.object_id,
             title: "Node",
             manufacturer: "Manufacturer : "+nodes[i].fields.manufacturer,
-            model: "Model : "+nodes[i].fields.model
+            contact: "Model : "+nodes[i].fields.model
         },
             image: "/static/assets/pi.png",
             HTMLclass: 'gray',
@@ -48,6 +47,7 @@ function chartBuilder(nodes, generators, inverters, batteries){
                     name: generators[device1].pk,
                     manufacturer: "Manufacturer : "+ generators[device1].fields.manufacturer,
                     contact: "Type : Generator",
+                    voltage: "___________________",
                     title: "Output Volts: " + dynamicDataInverter[randomNumber()][randomNumber()],
                     model: "Input Volts: " + dynamicDataInverter[randomNumber()][randomNumber()],
                     frequency: "Frequency : " + dynamicDataInverter[randomNumber()][randomNumber()]
@@ -69,6 +69,7 @@ function chartBuilder(nodes, generators, inverters, batteries){
                     name: batteries[device2].pk,
                     manufacturer: "Manufacturer : "+ batteries[device2].fields.manufacturer,
                     contact: "Type : Battery",
+                    voltage: "___________________",
                     title: "Output Volts: " + dynamicDataInverter[randomNumber()][randomNumber()],
                     model: "Input Volts: " + dynamicDataInverter[randomNumber()][randomNumber()],
                     frequency: "Frequency : " + dynamicDataInverter[randomNumber()][randomNumber()]
@@ -90,6 +91,7 @@ function chartBuilder(nodes, generators, inverters, batteries){
                     name: inverters[device3].pk,
                     manufacturer: "Manufacturer : "+ inverters[device3].fields.manufacturer,
                     contact: "Type : Inverter",
+                    voltage: "___________________",
                     title: "Output Volts: " + dynamicDataInverter[randomNumber()][randomNumber()],
                     model: "Input Volts: " + dynamicDataInverter[randomNumber()][randomNumber()],
                     frequency: "Frequency : " + dynamicDataInverter[randomNumber()][randomNumber()]
