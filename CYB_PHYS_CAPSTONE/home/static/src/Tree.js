@@ -123,9 +123,11 @@ function assetObjectToJsonArray(assetObject){
                 }
     return assetArray;
 }
+
 function randomNumber() {
     return Math.floor((Math.random() * 3));
 }
+
 function updateDeviceMapAssets(queryString){
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function() {
