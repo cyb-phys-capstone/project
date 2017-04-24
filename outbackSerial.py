@@ -1,6 +1,7 @@
 import serial
 from serial import SerialException
 import datetime
+import time
 from ChargeController import ChargeController
 from BatteryController import BatteryController
 import psycopg2
@@ -11,14 +12,13 @@ from random import randint
 # windows will be something like "COM1"
 # the baud rate should be 19200
 
-ser = serial.Serial("/dev/tty.usbmodem1421", 19200)
+#ser = serial.Serial("/dev/tty.usbmodem1421", 19200)
 
 dt =datetime.datetime.now()
 chargeID=randint(1, 1000000)
 batteryID=randint(1, 10000000)
 
 # main loop
-output = "02,3,00,00,00,037,000,00,02,000,00,483,0000,00,032"
 
 
 def insertBattery():
@@ -30,7 +30,17 @@ def insertCharge():
 	query = """INSERT INTO home_sdata (id, output_voltage, current, real_power, s_id_id, timestamp) VALUES (%s, %s, %s, %s, %s, %s);"""
 	return query
 
+def createNodeController():
+	query = """INSERT INTO home_nodecontroller (id, object_id, model, manufacturer, content_type_id) VALUES (%s, %s, %s, %s, %s, %s);"""
+	return query
 
+def createSolar():
+	query = """INSERT INTO home_solar (id, manufracturer, dimension, weight, short_circuit_current, open_circuit_voltage, capacity, azimuth, slope, nc_id_id, model) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
+	return query
+
+def createBattery():
+	query = """INSERT INTO home_battery (id, manufacturer, dimension, weight, R, capacity, rountrip_efficiency, min_soc, max_charging_rate, max_discharing_rate, charging_efficiency, discharging_efficiency, required_reserve, rated_voltage, phase, current_voltage, nc_id_id, model) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
+	return query
 
 try:
 	conn = psycopg2.connect("dbname='CYB_PHYS_CAPSTONE_DB' user='admin' host='localhost' password='abc123' port='3306'")
@@ -48,16 +58,39 @@ cursor = conn.cursor()
 # cursor.execute("""SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'""")
 # for table in cursor.fetchall():
 # 	print(table)
-# cursor.execute("select column_name from information_schema.columns where table_name='home_nodecontroller'")
-# column_names = [row[0] for row in cursor]
-# print (column_names)
-# cursor.execute("""SELECT * FROM home_nodecontroller""")
-# print(cursor.fetchall())
-# print (dt)
+cursor.execute("select column_name from information_schema.columns where table_name='home_bdata'")
+column_names = [row[0] for row in cursor]
+print (column_names)
+cursor.execute("select column_name from information_schema.columns where table_name='home_battery'")
+column_names = [row[0] for row in cursor]
+print (column_names)
+cursor.execute("""SELECT * FROM home_battery""")
+print(cursor.fetchall())
+print (dt)
 
+try:
+	cursor.execute(createNodeController(), (1, 1, "pi","raspberrypi", 9))
+except:
+	print("error trying to create node_controller")
 
+try:
+	cursor.execute(createNodeController(), (2, 1, 'pi',"raspberrypi", 12))
+except:
+	print("error trying to create node_controller")
+
+# try:
+# 	cursor.execute(createBattery(), (2,'outback', 34.0, 12, 0.0, 24.0, 90.0, 0.0, 1.0, 1.0, 90.0, 90.0, 20.0, 20.0, 1, 12.0, 1, 'Battery'))
+# except:
+# 	print("Failed to create a new battery object")
+#
+# try:
+# 	cursor.execute(createSolar(), (2, 'outback', 34, 12, 5.0, 0.0, 24.0, 0.0, 33.45, 2, 'Solar'))
+# except:
+# 	print("Failed to create a new solar object")
+
+output ="00,4,0000,0126,0000,02,00023,287,099,001,00,33,062"
 while 1:
-	output =ser.readline()
+	#output =ser.readline()
 	if(len(output)>3):
 		if(output[3]=='5'):
 			deviceType="Inverter"
@@ -78,12 +111,14 @@ while 1:
 			bc= BatteryController()
 			bc.batteryDC(deviceType=deviceType, array=output)
 			print(bc.shuntAKillo)
-			cursor.execute(insertBattery(),(batteryID, bc.stateOfCharge, bc.shuntAKillo,12, 2.0, 24.0, 90.0, bc.minSOC, 1.0, 1.0, bc.netInputAH, bc.netOutputAH, 20.0, 24.0, 1, bc.batteryVoltage, 1, dt))
+			cursor.execute(insertBattery(),(batteryID, bc.stateOfCharge, bc.shuntAKillo, 12.0, 2.0, 24.0, 90.0, bc.minSOC, 1.0, 1.0, bc.netInputAH, bc.netOutputAH, 20.0, 24.0, 1, bc.batteryVoltage, 1, dt))
 			conn.commit()
 			#print(output, deviceType)
+		time.sleep(5)
+
 
 # this is for testing purposes (do not remove)
-# output = "02,3,00,00,00,037,000,00,02,000,00,483,0000,00,032"
-# output = "03,4,0014,0001,0000,01,00000,482,100,110,08,99,057"
+# output = "00,3,00,08,06,034,031,00,05,000,02,262,000,000,045"
+# output = "00,4,0000,0126,0000,02,00023,287,099,001,00,33,062"
 # chargeController(output1)
 # batteryDC(output2)

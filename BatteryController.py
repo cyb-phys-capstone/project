@@ -36,6 +36,9 @@ class BatteryController():
 		aCurrent =array[5:8]+"."+array[8:9]
 		bCurrent = array[10:13]+"."+array[13:14]
 		cCurrent = array[15:18]+"."+array[18:19]
+		print(aCurrent)
+		print(bCurrent)
+		print(cCurrent)
 		self.shuntCurrentFunc(currentA=aCurrent, currentB=bCurrent, currentC=cCurrent)
 		extraDataIdentifier = array[20:22]
 		extraData = array[23:28]
@@ -68,16 +71,33 @@ class BatteryController():
 		extraData = "".join(extraDataValues)
 		if(identifier==0):
 			self.shuntAAmpHrs = int(extraData)
+		else:
+			self.shuntAAmpHrs = 0.0
+
 		if(identifier==1):
 			self.shuntAKillo = (Decimal(extraData))/100
+		else:
+			self.shuntAKillo = 0.0
 		if(identifier==2):
 			self.shuntBAmpHrs = int(extraData)
+		else:
+			self.shuntBAmpHrs = 0.0
+
 		if(identifier==3):
 			self.shuntBKillo = (Decimal(extraData))/100
+		else:
+			self.shuntBKillo = 0.0
+
 		if (identifier==4):
 			self.shuntCAmpHrs = int(extraData)
+		else:
+			self.shuntCAmpHrs = 0.0
+
 		if (identifier==5):
 			self.shuntCKillo = (Decimal(extraData))/100
+		else:
+			self.shuntCKillo = 0.0
+
 		if(identifier==6):
 			self.daysSinceFull = (Decimal(extraData))/10
 		if(identifier==7):
