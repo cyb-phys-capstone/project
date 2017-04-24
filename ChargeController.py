@@ -42,7 +42,7 @@ class ChargeController():
 		batteryVoltage = array[35:38]
 		self.batteryVoltageFunc(batteryVoltage=batteryVoltage)
 
-		dailyAMPhours = array[39:43]
+		dailyAMPhours = array[39:42]
 		self.dailyAHFunc(dailyAH=dailyAMPhours)
 
 		checkSum = array[47:50]
