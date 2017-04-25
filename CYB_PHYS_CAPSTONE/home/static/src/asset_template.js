@@ -17,8 +17,8 @@ function updateTimestamps(){
 
     // only get the times for today's date
     if (theDate.getMonth() == current.getMonth() && theDate.getDate() == current.getDate() && theDate.getFullYear() == current.getFullYear()){
-      // format to 00:00
-      var str = (theDate.getHours() < 10 ? '0' : '') + theDate.getHours() + ":" + (theDate.getMinutes() < 10 ? '0' : '') + theDate.getMinutes();
+      // format to 00:00:00
+      var str = (theDate.getHours() < 10 ? '0' : '') + theDate.getHours() + ":" + (theDate.getMinutes() < 10 ? '0' : '') + theDate.getMinutes() + ":" + (theDate.getSeconds() < 10 ? '0' : '') + theDate.getSeconds();
 
       // add to the dropdown
       var option = document.createElement("option");
