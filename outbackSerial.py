@@ -1,6 +1,6 @@
 import serial
 from serial import SerialException
-import datetime
+from datetime import date, datetime
 import time
 from ChargeController import ChargeController
 from BatteryController import BatteryController
@@ -14,7 +14,7 @@ from random import randint
 
 #ser = serial.Serial("/dev/tty.usbmodem1421", 19200)
 
-dt =datetime.datetime.now()
+dt = datetime.now()
 chargeID=randint(1, 1000000)
 batteryID=randint(1, 10000000)
 
@@ -88,8 +88,20 @@ except:
 # except:
 # 	print("Failed to create a new solar object")
 
+def get_timestamp():
+	# get full date currently
+	now = datetime.now()
+	# strip out the microseconds
+	now_str = str(now).split(".")[0]
+	# recreate date
+	d = datetime.strptime(now_str, '%Y-%m-%d %H:%M:%S')
+	return d
+
+
 output ="00,4,0000,0126,0000,02,00023,287,099,001,00,33,062"
 while 1:
+	dt = get_timestamp()
+	print(str(dt).split(".")[0])
 	#output =ser.readline()
 	if(len(output)>3):
 		if(output[3]=='5'):
@@ -107,7 +119,7 @@ while 1:
 		if(output[3]=='4'):
 			batteryID+=1
 			print(output)
-			deviceType="DC Battrey Monitor"
+			deviceType="DC Battery Monitor"
 			bc= BatteryController()
 			bc.batteryDC(deviceType=deviceType, array=output)
 			print(bc.shuntAKillo)
