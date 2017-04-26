@@ -3,12 +3,9 @@ from django.shortcuts import render, render_to_response, get_object_or_404
 from home.forms import *
 from home.models import NREL, NodeController, Battery, BData, Generator, Inverter, IData, Solar, SData
 from django.http import HttpResponse
-from urlparse import urlparse, parse_qs
 
-def device_map_getrequest(request,devicemapdata,query):
-    data = request.GET
-    print(data)
-    html = '<h1>yo</h1>'
+def device_map_getrequest(request):
+    html = '<html><body><h1>yo</h1></body></html' #output_volts, input_volts, frequency
     return HttpResponse(html)
 
 # Create your views here.
