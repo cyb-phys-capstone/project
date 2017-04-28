@@ -29,10 +29,9 @@ function chartBuilder(nodes, generators, inverters, batteries){
         };
     for (var i =0; i < nodes.length; i++){
         var childOfEMS = { text: {
-            name: nodes[i].fields.object_id,
+            name: nodes[i].fields.model,
             title: "Node",
-            manufacturer: "Manufacturer : "+nodes[i].fields.manufacturer,
-            contact: "Model : "+nodes[i].fields.model
+            manufacturer: "Manufacturer : "+nodes[i].fields.manufacturer
         },
             image: "/static/assets/pi.png",
             HTMLclass: 'gray',
@@ -44,7 +43,7 @@ function chartBuilder(nodes, generators, inverters, batteries){
             if (generators[device1].fields.nc_id == nodes[i].fields.object_id){
 
                 var generator_node = { text: {
-                    name: generators[device1].pk,
+                    name: generators[device1].fields.model,
                     manufacturer: "Manufacturer : "+ generators[device1].fields.manufacturer,
                     contact: "Type : Generator",
                     voltage: "___________________",
@@ -66,7 +65,7 @@ function chartBuilder(nodes, generators, inverters, batteries){
         for (var device2 =0; device2 < batteries.length; device2++){
             if (batteries[device2].fields.nc_id == nodes[i].fields.object_id){
                 var battery_node = { text: {
-                    name: batteries[device2].pk,
+                    name: batteries[device2].fields.model,
                     manufacturer: "Manufacturer : "+ batteries[device2].fields.manufacturer,
                     contact: "Type : Battery",
                     voltage: "___________________",
@@ -88,7 +87,7 @@ function chartBuilder(nodes, generators, inverters, batteries){
         for (var device3 =0; device3 < inverters.length; device3++){
             if (inverters[device3].fields.nc_id == nodes[i].fields.object_id){
                 var inverter_node = { text: {
-                    name: inverters[device3].pk,
+                    name: inverters[device3].fields.model,
                     manufacturer: "Manufacturer : "+ inverters[device3].fields.manufacturer,
                     contact: "Type : Inverter",
                     voltage: "___________________",
@@ -145,4 +144,8 @@ function updateDeviceMapAssets(queryString){
 
 }
 
+function updateNode() {
+    var tree = document.getElementById("custom-colored");
+    console.log(tree);
 
+}

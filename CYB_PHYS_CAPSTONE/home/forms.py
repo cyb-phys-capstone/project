@@ -10,6 +10,7 @@ class PopulateTree:
     b_data_from_db = BData.objects.all()
     i_data_from_db = IData.objects.all()
     g_data_from_db = GData.objects.all()
+    print("Populate trees")
     try:
         nodes = serializers.serialize('json', nodes_from_db)
         generators = serializers.serialize('json', generators_from_db)

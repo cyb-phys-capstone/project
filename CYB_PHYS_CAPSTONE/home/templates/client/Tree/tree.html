@@ -83,13 +83,13 @@
 
                 chartBuilder(nodes, generatorObjects, inverterObjects, batteryObjects);
                 var chart = new Treant(chart_config);
-                setInterval(function(){
-                    chartBuilder(nodes, generatorObjects, inverterObjects, batteryObjects);
-                    chart = new Treant(chart_config);
-                }, 8000);
+                //setInterval(function(){
+                //    chartBuilder(nodes, generatorObjects, inverterObjects, batteryObjects);
+                //    chart = new Treant(chart_config);
+                //}, 8000);
 
 
-
+                updateNode();
                 /*setTimeout function for testing purposes, will execture after 4 seconds of page loading*/
                 //HERE
                     var batteryAssetsArray = assetObjectToJsonArray(batteryObjects);
@@ -107,18 +107,15 @@
                     console.log(queryStringRequest)
                 //HERE
                 /*uncomment below to send query to server, prints response in console. TODO: server side needs work for request*/
-                //setTimeout(updateDeviceMapAssets(queryStringRequest), 4000);
+                setTimeout(updateDeviceMapAssets(queryStringRequest), 4000);
 
                 /*when completed testing updateDeviceMapAssets, add HERE to HERE to repeating setInterval function below */
-                // setInterval(function(){
+              //   setInterval(function(){
               //      updateDeviceMapAssets(queryStringRequest);
               //  }, 3000);
-
             </script>
           </div>
-
         </div>
-
       </div>
 
     </div>
