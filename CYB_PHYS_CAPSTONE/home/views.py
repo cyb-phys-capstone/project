@@ -4,9 +4,7 @@ from home.forms import *
 from home.models import NREL, NodeController, Battery, BData, Generator, Inverter, IData, Solar, SData
 from django.http import HttpResponse
 
-def device_map_getrequest(request):
-    html = '<html><body><h1>yo</h1></body></html' #output_volts, input_volts, frequency
-    return HttpResponse(html)
+
 
 # Create your views here.
 def nrel_times(request):
